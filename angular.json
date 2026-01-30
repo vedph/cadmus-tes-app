@@ -29,17 +29,17 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss", "./node_modules/leaflet/dist/leaflet.css"],
+            "polyfills": ["@angular/localize/init"],
+            "allowedCommonJsDependencies": ["leaflet", "webcola", "dagre", "ngraph.forcelayout"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "4MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",

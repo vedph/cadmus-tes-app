@@ -1,0 +1,19 @@
+#container {
+  margin: 0 16px;
+}
+#banner {
+  margin-bottom: 24px;
+}
+#banner img {
+  display: block;
+  margin: auto;
+}
+#content {
+  text-align: center;
+  max-width: 800px;
+  display: block;
+  margin: 32px auto 32px auto;
+}
+h1 {
+  text-align: center;
+}

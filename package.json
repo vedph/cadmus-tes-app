@@ -85,7 +85,7 @@
     "@myrmidon/cadmus-text-ed-txt": "^9.0.2",
     "@myrmidon/cadmus-thesaurus-editor": "^16.0.1",
     "@myrmidon/cadmus-thesaurus-list": "^16.0.1",
-    "@myrmidon/cadmus-thesaurus-store": "^0.0.1",
+    "@myrmidon/cadmus-thesaurus-store": "^0.0.2",
     "@myrmidon/cadmus-thesaurus-ui": "^15.0.1",
     "@myrmidon/cadmus-ui": "^16.0.0",
     "@myrmidon/cadmus-ui-flag-set": "^9.0.3",

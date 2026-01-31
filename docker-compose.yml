@@ -50,14 +50,13 @@ services:
       - cadmus-tes-network
 
   # Cadmus TES App
-  cadmus-app:
+  cadmus-tes-app:
     image: vedph2020/cadmus-tes-app:0.0.1
     container_name: cadmus-tes-app
     ports:
       - 4200:80
     depends_on:
       - cadmus-tes-api
-      # - cadmus-biblio-api
     networks:
       - cadmus-tes-network
 

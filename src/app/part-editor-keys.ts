@@ -12,6 +12,9 @@ import {
   PIN_LINKS_PART_TYPEID,
   PIN_LINKS_FRAGMENT_TYPEID,
   HISTORICAL_EVENTS_PART_TYPEID,
+  PHYSICAL_STATES_PART_TYPEID,
+  HISTORICAL_DATE_PART_TYPEID,
+  ASSERTED_HISTORICAL_DATES_PART_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
 import {
   APPARATUS_FRAGMENT_TYPEID,
@@ -43,6 +46,9 @@ const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
  * with the mappings between fragment type IDs and their editor keys.
  */
 export const PART_EDITOR_KEYS: PartEditorKeys = {
+  [ASSERTED_HISTORICAL_DATES_PART_TYPEID]: {
+    part: GENERAL,
+  },
   [BIBLIOGRAPHY_PART_TYPEID]: {
     part: GENERAL,
   },
@@ -55,6 +61,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [DOC_REFERENCES_PART_TYPEID]: {
     part: GENERAL,
   },
+  [HISTORICAL_DATE_PART_TYPEID]: {
+    part: GENERAL,
+  },
   [HISTORICAL_EVENTS_PART_TYPEID]: {
     part: GENERAL,
   },
@@ -65,6 +74,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: GENERAL,
   },
   [NOTE_PART_TYPEID]: {
+    part: GENERAL,
+  },
+  [PHYSICAL_STATES_PART_TYPEID]: {
     part: GENERAL,
   },
   [PIN_LINKS_PART_TYPEID]: {

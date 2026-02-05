@@ -1,7 +1,8 @@
 services:
   # MongoDB
   cadmus-tes-mongo:
-    image: mongo
+    image: mongo:4.4
+    platform: linux/amd64
     container_name: cadmus-tes-mongo
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -12,7 +13,7 @@ services:
     networks:
       - cadmus-tes-network
 
- # PostgreSQL
+  # PostgreSQL
   cadmus-tes-pgsql:
     image: postgres
     container_name: cadmus-tes-pgsql
@@ -21,13 +22,14 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
     ports:
-      - 127.0.0.1:5432:5432
+      - 127.0.0.1:5433:5432
     networks:
       - cadmus-tes-network
 
   # Cadmus TES API
   cadmus-tes-api:
     image: vedph2020/cadmus-tes-api:0.0.1
+    platform: linux/amd64
     container_name: cadmus-tes-api
     ports:
       - 5101:8080
@@ -52,6 +54,7 @@ services:
   # Cadmus TES App
   cadmus-tes-app:
     image: vedph2020/cadmus-tes-app:0.0.1
+    platform: linux/amd64
     container_name: cadmus-tes-app
     ports:
       - 4200:80

@@ -29,9 +29,9 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "./node_modules/leaflet/dist/leaflet.css"],
+            "styles": ["src/styles.scss"],
             "polyfills": ["@angular/localize/init"],
-            "allowedCommonJsDependencies": ["leaflet", "webcola", "dagre", "ngraph.forcelayout"]
+            "allowedCommonJsDependencies": ["maplibre-gl", "webcola", "dagre", "ngraph.forcelayout"]
           },
           "configurations": {
             "production": {

@@ -1,9 +1,23 @@
 {
   "name": "@myrmidon/cadmus-part-tes-pg",
   "version": "0.0.1",
+  "description": "Cadmus - TES-specific routes.",
+  "keywords": [
+    "Cadmus",
+    "TES"
+  ],
+  "homepage": "https://github.com/vedph/cadmus-tes-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedph/cadmus-tes-app"
+  },
+  "author": {
+    "name": "Daniele Fusi"
+  },
   "peerDependencies": {
     "@angular/common": "^21.1.0",
-    "@angular/core": "^21.1.0"
+    "@angular/core": "^21.1.0",
+    "@myrmidon/cadmus-part-tes-site-resources": "^0.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

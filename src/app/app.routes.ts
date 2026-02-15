@@ -116,6 +116,15 @@ export const routes: Routes = [
       ),
     canActivate: [jwtGuard],
   },
+  // tes
+  {
+    path: 'items/:iid/tes',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-part-tes-pg').then(
+        (module) => module.CADMUS_PART_TES_PG_ROUTES
+      ),
+    canActivate: [jwtGuard],
+  },
   // cadmus - graph
   {
     path: 'graph',

@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-sre": "ng build @myrmidon/cadmus-part-tes-site-resources",
-    "build-lib": "pnpm run build-sre"
+    "build-pg": "ng build @myrmidon/cadmus-part-tes-pg",
+    "build-lib": "pnpm run build-sre && pnpm run build-pg"
   },
   "prettier": {
     "printWidth": 100,

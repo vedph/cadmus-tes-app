@@ -32,10 +32,13 @@ import { EPI_SUPPORT_FRR_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-sup
 import { EPI_TECHNIQUE_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-technique';
 import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-ligatures';
 
+import { SITE_RESOURCES_PART_TYPEID } from '@myrmidon/cadmus-part-tes-site-resources';
+
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
 const GEOGRAPHY = 'geography';
 const EPIGRAPHY = 'epigraphy';
+const TES = 'tes';
 
 const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 
@@ -107,6 +110,10 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   },
   [EPI_TECHNIQUE_PART_TYPEID]: {
     part: EPIGRAPHY,
+  },
+  // TES
+  [SITE_RESOURCES_PART_TYPEID]: {
+    part: TES,
   },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {

@@ -36,8 +36,15 @@ interface SiteResourcesPartSettings {
   lookupProviderOptions?: LookupProviderOptions;
 }
 
+/**
+ * Site resources part editor component.
+ * Thesauri: site-resource-types, site-resource-tags, site-resource-features, asserted-historical-date-tags,
+ * doc-reference-types, doc-reference-tags, site-resource-count-ids, site-resource-count-tags,
+ * geo-location-tags, assertion-tags.
+ * Settings: lookupProviderOptions (LookupProviderOptions).
+ */
 @Component({
-  selector: 'cadmus-site-resources-part.component',
+  selector: 'cadmus-site-resources-part',
   imports: [
     CommonModule,
     ReactiveFormsModule,

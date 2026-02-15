@@ -1,0 +1,115 @@
+<form [formGroup]="form" (submit)="save()">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>picture_in_picture</mat-icon>
+      </div>
+      <mat-card-title>
+        {{ (modelName() | titlecase) || 'Site Resources Part' }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <button type="button" mat-flat-button color="primary" (click)="addResource()">
+          <mat-icon>add_circle</mat-icon> resource
+        </button>
+      </div>
+      @if (entries.value.length) {
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>EID</th>
+              <th>type</th>
+              <th>tag</th>
+              <th>location</th>
+              <th>date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              entry of entries.value;
+              track entry;
+              let i = $index;
+              let first = $first;
+              let last = $last
+            ) {
+              <tr [class.selected]="entry === edited()">
+                <td class="fit-width">
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="primary"
+                    matTooltip="Edit this resource"
+                    (click)="editResource(entry, i)"
+                  >
+                    <mat-icon class="mat-primary">edit</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this resource up"
+                    [disabled]="first"
+                    (click)="moveResourceUp(i)"
+                  >
+                    <mat-icon>arrow_upward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this resource down"
+                    [disabled]="last"
+                    (click)="moveResourceDown(i)"
+                  >
+                    <mat-icon>arrow_downward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="warn"
+                    matTooltip="Delete this resource"
+                    (click)="deleteResource(i)"
+                  >
+                    <mat-icon class="mat-warn">remove_circle</mat-icon>
+                  </button>
+                </td>
+                <td>{{ entry.eid }}</td>
+                <td>{{ entry.type | flatLookup: 'id' : 'value' }}</td>
+                <td>{{ entry.tag | flatLookup: 'id' : 'value' }}</td>
+                <td>{{ entry.location?.value?.label }}</td>
+                <td>{{ entry.date | historicalDate }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      @if (edited()) {
+        <fieldset>
+          <mat-expansion-panel [expanded]="edited()" [disabled]="!edited()">
+            <mat-expansion-panel-header>
+              <mat-panel-title>resource #{{ editedIndex() + 1 }}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <cadmus-site-resource-editor
+              [resource]="edited()"
+              (modelChange)="saveResource($event)"
+              (cancelEdit)="closeResource()"
+              [typeEntries]="typeEntries()"
+              [tagEntries]="tagEntries()"
+              [featureEntries]="featureEntries()"
+              [dateTagEntries]="dateTagEntries()"
+              [refTypeEntries]="refTypeEntries()"
+              [refTagEntries]="refTagEntries()"
+              [countIdEntries]="countIdEntries()"
+              [countTagEntries]="countTagEntries()"
+              [locTagEntries]="locTagEntries()"
+              [lookupProviderOptions]="lookupProviderOptions()"
+            />
+          </mat-expansion-panel>
+        </fieldset>
+      }
+    </mat-card-content>
+    <mat-card-actions>
+      <cadmus-close-save-buttons [form]="form" [noSave]="userLevel < 2" (closeRequest)="close()" />
+    </mat-card-actions>
+  </mat-card>
+</form>

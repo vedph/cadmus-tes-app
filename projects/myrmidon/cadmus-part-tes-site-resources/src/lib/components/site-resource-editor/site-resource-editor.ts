@@ -64,11 +64,11 @@ export class SiteResourceEditor {
   public readonly cancelEdit = output();
 
   // site-resource-types
-  public readonly resTypeEntries = input<ThesaurusEntry[] | undefined>();
+  public readonly typeEntries = input<ThesaurusEntry[] | undefined>();
   // site-resource-tags
-  public readonly resTagEntries = input<ThesaurusEntry[] | undefined>();
+  public readonly tagEntries = input<ThesaurusEntry[] | undefined>();
   // site-resource-features
-  public readonly resFeatureEntries = input<ThesaurusEntry[] | undefined>();
+  public readonly featureEntries = input<ThesaurusEntry[] | undefined>();
   // asserted-historical-date-tags
   public readonly dateTagEntries = input<ThesaurusEntry[] | undefined>();
   // doc-reference-types

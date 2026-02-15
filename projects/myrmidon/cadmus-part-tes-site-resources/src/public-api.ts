@@ -4,3 +4,4 @@
 
 export * from './lib/site-resources-part';
 export * from './lib/components/site-resource-editor/site-resource-editor';
+export * from './lib/components/site-resources-part/site-resources-part.component';

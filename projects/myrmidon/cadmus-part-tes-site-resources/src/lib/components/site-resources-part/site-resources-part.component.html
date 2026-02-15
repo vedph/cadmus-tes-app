@@ -91,7 +91,7 @@
             </mat-expansion-panel-header>
             <cadmus-site-resource-editor
               [resource]="edited()"
-              (modelChange)="saveResource($event)"
+              (resourceChange)="saveResource($event!)"
               (cancelEdit)="closeResource()"
               [typeEntries]="typeEntries()"
               [tagEntries]="tagEntries()"

@@ -1,0 +1,29 @@
+{
+  "name": "@myrmidon/cadmus-part-tes-site-resources",
+  "version": "0.0.1",
+  "description": "Cadmus - TES site resources part library",
+  "keywords": [
+    "Cadmus",
+    "TES"
+  ],
+  "homepage": "https://github.com/vedph/cadmus-tes-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedph/cadmus-tes-app"
+  },
+  "author": {
+    "name": "Daniele Fusi"
+  },
+  "peerDependencies": {
+    "@angular/common": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@myrmidon/ngx-tools": "^2.0.0",
+    "@myrmidon/cadmus-core": "^12.0.1",
+    "@myrmidon/cadmus-state": "^14.0.0",
+    "@myrmidon/cadmus-ui": "^14.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

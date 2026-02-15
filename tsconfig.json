@@ -3,6 +3,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/cadmus-part-tes-pg": [
+        "./dist/myrmidon/cadmus-part-tes-pg"
+      ],
+      "@myrmidon/cadmus-part-tes-site-resources": [
+        "./dist/myrmidon/cadmus-part-tes-site-resources"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -28,6 +36,18 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/myrmidon/cadmus-part-tes-pg/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/myrmidon/cadmus-part-tes-pg/tsconfig.spec.json"
     }
   ]
 }

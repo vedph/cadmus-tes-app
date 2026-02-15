@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-sre": "ng build @myrmidon/cadmus-part-tes-site-resources",
+    "build-lib": "pnpm run build-sre"
   },
   "prettier": {
     "printWidth": 100,
@@ -114,6 +116,7 @@
     "@angular/compiler-cli": "^21.1.4",
     "@angular/localize": "21.1.4",
     "jsdom": "^28.1.0",
+    "ng-packagr": "^21.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.18"
   },

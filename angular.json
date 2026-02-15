@@ -73,6 +73,58 @@
           "builder": "@angular/build:unit-test"
         }
       }
+    },
+    "@myrmidon/cadmus-part-tes-site-resources": {
+      "projectType": "library",
+      "root": "projects/myrmidon/cadmus-part-tes-site-resources",
+      "sourceRoot": "projects/myrmidon/cadmus-part-tes-site-resources/src",
+      "prefix": "cadmus",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@myrmidon/cadmus-part-tes-pg": {
+      "projectType": "library",
+      "root": "projects/myrmidon/cadmus-part-tes-pg",
+      "sourceRoot": "projects/myrmidon/cadmus-part-tes-pg/src",
+      "prefix": "cadmus",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myrmidon/cadmus-part-tes-pg/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myrmidon/cadmus-part-tes-pg/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/myrmidon/cadmus-part-tes-pg/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

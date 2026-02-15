@@ -66,8 +66,8 @@ importers:
         specifier: ^12.0.2
         version: 12.0.2(fb7ee57a5c1ca3490ae5eb5ad8ebd622)
       '@myrmidon/cadmus-geo-location':
-        specifier: ^0.0.3
-        version: 0.0.3(2d5b784dcb2adf4894752ccef29c1812)
+        specifier: ^0.0.4
+        version: 0.0.4(2d5b784dcb2adf4894752ccef29c1812)
       '@myrmidon/cadmus-graph-pg-ex':
         specifier: ^16.0.1
         version: 16.0.1(@angular/common@21.1.4(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0))(rxjs@7.8.2))(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0))(@angular/material@21.1.4(54230fae20c20ba5ef21b59f78e82401))(@myrmidon/cadmus-api@14.0.7(38caf2599d4b09038b91c35b37b5fdbc))(@myrmidon/cadmus-graph-ui-ex@16.0.1(2c238f9888aef8040cf4e7a559af8f60))(@myrmidon/cadmus-graph-ui@15.0.1(58aa2ade15f5a864b8d1a9eb2b89931f))(@myrmidon/cadmus-refs-lookup@10.0.8(4c3282ac2f600b197d3f3ce7c627c316))(@myrmidon/ngx-mat-tools@1.0.1(@angular/common@21.1.4(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0))(rxjs@7.8.2))(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0)))(@myrmidon/ngx-tools@2.0.2(@angular/common@21.1.4(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0))(rxjs@7.8.2))(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0)))
@@ -1238,8 +1238,8 @@ packages:
       '@myrmidon/cadmus-ui-flag-set': ^9.0.3
       '@myrmidon/cadmus-ui-pg': ^16.0.1
 
-  '@myrmidon/cadmus-geo-location@0.0.3':
-    resolution: {integrity: sha512-8wNQDhgP9taQ+DFuWaOwE7GQvmcV4Uf9WJX3LJqyxOCbZfgThOBtkLoiTbSAvRvBhXXvRlLE20f7PAwlJwhvmA==}
+  '@myrmidon/cadmus-geo-location@0.0.4':
+    resolution: {integrity: sha512-inpSyJNGBlwNMywR7ivVrxynASxUrCSJbfvVop8/dhRuQcr9ldI42ntSlTMbERpFQBW/p30zykimnwtTCrKM2g==}
     peerDependencies:
       '@angular/common': ^21.1.0
       '@angular/core': ^21.1.0
@@ -5313,7 +5313,7 @@ snapshots:
       '@myrmidon/cadmus-ui-pg': 16.0.1(c98f1744c157ac9a173eb11045cee6ce)
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-geo-location@0.0.3(2d5b784dcb2adf4894752ccef29c1812)':
+  '@myrmidon/cadmus-geo-location@0.0.4(2d5b784dcb2adf4894752ccef29c1812)':
     dependencies:
       '@angular/common': 21.1.4(@angular/core@21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0))(rxjs@7.8.2)
       '@angular/core': 21.1.4(@angular/compiler@21.1.4)(rxjs@7.8.2)(zone.js@0.16.0)

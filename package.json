@@ -44,7 +44,7 @@
     "@myrmidon/cadmus-flags-pg": "^15.0.2",
     "@myrmidon/cadmus-flags-ui": "^15.0.2",
     "@myrmidon/cadmus-fr-epigraphy-ligatures": "^12.0.2",
-    "@myrmidon/cadmus-geo-location": "^0.0.3",
+    "@myrmidon/cadmus-geo-location": "^0.0.4",
     "@myrmidon/cadmus-graph-pg-ex": "^16.0.1",
     "@myrmidon/cadmus-graph-ui-ex": "^16.0.1",
     "@myrmidon/cadmus-item-editor": "^16.0.1",

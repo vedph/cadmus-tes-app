@@ -62,7 +62,7 @@
     "@myrmidon/cadmus-part-epigraphy-technique": "^12.0.2",
     "@myrmidon/cadmus-part-general-pg": "^16.0.5",
     "@myrmidon/cadmus-part-general-ui": "^16.0.5",
-    "@myrmidon/cadmus-part-geo-asserted-locations": "^12.0.0",
+    "@myrmidon/cadmus-part-geo-asserted-locations": "^12.0.1",
     "@myrmidon/cadmus-part-geo-asserted-toponyms": "^11.0.3",
     "@myrmidon/cadmus-part-geo-pg": "^11.0.2",
     "@myrmidon/cadmus-part-philology-pg": "^16.1.3",

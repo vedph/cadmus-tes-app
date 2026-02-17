@@ -2,6 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
 
+- [Cadmus TES backend](https://github.com/vedph/cadmus-tes)
+- [Cadmus documentation](https://vedph.github.io/cadmus-doc)
+
 ## Docker
 
 🐋 Quick Docker image build:

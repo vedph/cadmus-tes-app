@@ -1,5 +1,5 @@
 
-import { Component, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
@@ -9,9 +9,10 @@ import { AuthJwtService } from '@myrmidon/auth-jwt-login';
   imports: [RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  public readonly logged = signal<boolean>(false);;
+  public readonly logged = signal<boolean>(false);
 
   constructor(authService: AuthJwtService) {
     this.logged.set(authService.currentUserValue !== null);

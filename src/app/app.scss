@@ -13,6 +13,16 @@ footer {
   text-align: center;
 }
 
+footer a {
+  color: #d7984b;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #b36b1e;
+  text-decoration: underline;
+}
+
 #logo {
   flex: 0 0 60px;
 }

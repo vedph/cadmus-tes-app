@@ -27,7 +27,7 @@ services:
 
   # Cadmus TES API
   cadmus-tes-api:
-    image: vedph2020/cadmus-tes-api:0.0.1
+    image: vedph2020/cadmus-tes-api:0.0.2
     container_name: cadmus-tes-api
     ports:
       - 5101:8080
@@ -51,7 +51,7 @@ services:
 
   # Cadmus TES App
   cadmus-tes-app:
-    image: vedph2020/cadmus-tes-app:0.0.1
+    image: vedph2020/cadmus-tes-app:0.0.2
     container_name: cadmus-tes-app
     ports:
       - 4200:80

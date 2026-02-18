@@ -24,7 +24,7 @@
     ]
   },
   "private": true,
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.0",
   "dependencies": {
     "@angular/cdk": "~21.1.4",
     "@angular/common": "^21.1.4",
@@ -103,7 +103,7 @@
     "@types/geojson": "^7946.0.16",
     "echarts": "^6.0.0",
     "maplibre-gl": "^5.18.0",
-    "marked": "^17.0.2",
+    "marked": "^17.0.3",
     "monaco-editor": "^0.55.1",
     "ngx-echarts": "^21.0.0",
     "ngx-markdown": "^21.1.0",
@@ -119,7 +119,7 @@
     "@angular/localize": "21.1.4",
     "jsdom": "^28.1.0",
     "ng-packagr": "^21.1.0",
-    "typescript": "~5.9.2",
+    "typescript": "~5.9.3",
     "vitest": "^4.0.18"
   },
   "optionalDependencies": {

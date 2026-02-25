@@ -38,7 +38,9 @@ Typically you do it in your host by adding a volume in the `docker-compose.yml` 
 
 ## History
 
-- 2026-02-25: minor fix to login page.
+- 2026-02-25:
+  - minor fix to login page.
+  - updated Angular and packages.
 - 2026-02-22: updated Angular and packages.
 
 ### 0.0.2

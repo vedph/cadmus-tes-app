@@ -43,7 +43,7 @@ importers:
         version: 18.3.0(@angular/cdk@21.1.5(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.1.5(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2))(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.1.5(04a885828d39791c89cf26990ae84b6d))(marked@17.0.3)(monaco-editor@0.55.1)(rxjs@7.8.2)
       '@maplibre/ngx-maplibre-gl':
         specifier: ^21.0.2
-        version: 21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.18.0)(rxjs@7.8.2)
+        version: 21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.19.0)(rxjs@7.8.2)
       '@myrmidon/auth-jwt-admin':
         specifier: ^8.0.3
         version: 8.0.3(f14a5d40174af30015fa0f298b8bb8fc)
@@ -67,7 +67,7 @@ importers:
         version: 12.0.2(6dba12118b4554799dfe945e17d37b18)
       '@myrmidon/cadmus-geo-location':
         specifier: ^0.0.5
-        version: 0.0.5(3f5e062a2e2abbc2639985ac2eb06951)
+        version: 0.0.5(e05993548fff2afc1501d158777d5f7d)
       '@myrmidon/cadmus-graph-pg-ex':
         specifier: ^16.0.1
         version: 16.0.1(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.1.5(04a885828d39791c89cf26990ae84b6d))(@myrmidon/cadmus-api@14.0.7(b774f5a2ab721dcce7feeb249b8586b2))(@myrmidon/cadmus-graph-ui-ex@16.0.1(f0ecd5196f4580e9fb3e999876334857))(@myrmidon/cadmus-graph-ui@15.0.1(7cc40e1573ae6b5c6b642db85dfdbb46))(@myrmidon/cadmus-refs-lookup@10.0.8(1394dfad8b7b6cd57211dcaca8fb4f66))(@myrmidon/ngx-mat-tools@1.0.1(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@myrmidon/ngx-tools@2.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))
@@ -240,8 +240,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       maplibre-gl:
-        specifier: ^5.18.0
-        version: 5.18.0
+        specifier: ^5.19.0
+        version: 5.19.0
       marked:
         specifier: ^17.0.3
         version: 17.0.3
@@ -3391,8 +3391,8 @@ packages:
     resolution: {integrity: sha512-iyyEpDty1mwW3dGlYXAJqC/azFn5PPvgKVwXayOGBSmKLxhKZ9fg4qIan2ePpp1vJIwfFiO34LAPZgq9SZW9Aw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  maplibre-gl@5.18.0:
-    resolution: {integrity: sha512-UtWxPBpHuFvEkM+5FVfcFG9ZKEWZQI6+PZkvLErr8Zs5ux+O7/KQ3JjSUvAfOlMeMgd/77qlHpOw0yHL7JU5cw==}
+  maplibre-gl@5.19.0:
+    resolution: {integrity: sha512-REhYUN8gNP3HlcIZS6QU2uy8iovl31cXsrNDkCcqWSQbCkcpdYLczqDz5PVIwNH42UQNyvukjes/RoHPDrOUmQ==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
 
   marked@14.0.0:
@@ -5200,11 +5200,11 @@ snapshots:
     dependencies:
       '@mapbox/point-geometry': 1.1.0
 
-  '@maplibre/ngx-maplibre-gl@21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.18.0)(rxjs@7.8.2)':
+  '@maplibre/ngx-maplibre-gl@21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.19.0)(rxjs@7.8.2)':
     dependencies:
       '@angular/common': 21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2)
       '@angular/core': 21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)
-      maplibre-gl: 5.18.0
+      maplibre-gl: 5.19.0
       rxjs: 7.8.2
       tslib: 2.8.1
 
@@ -5330,17 +5330,17 @@ snapshots:
       '@myrmidon/cadmus-ui-pg': 16.0.1(12e7dad957a4697368fc27f1baf64fc8)
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-geo-location@0.0.5(3f5e062a2e2abbc2639985ac2eb06951)':
+  '@myrmidon/cadmus-geo-location@0.0.5(e05993548fff2afc1501d158777d5f7d)':
     dependencies:
       '@angular/common': 21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2)
       '@angular/core': 21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)
       '@angular/forms': 21.1.5(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.1.5(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@angular/material': 21.1.5(04a885828d39791c89cf26990ae84b6d)
-      '@maplibre/ngx-maplibre-gl': 21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.18.0)(rxjs@7.8.2)
+      '@maplibre/ngx-maplibre-gl': 21.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(maplibre-gl@5.19.0)(rxjs@7.8.2)
       '@myrmidon/ngx-mat-tools': 1.0.1(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))
       '@terraformer/wkt': 2.2.1
       '@types/geojson': 7946.0.16
-      maplibre-gl: 5.18.0
+      maplibre-gl: 5.19.0
       tslib: 2.8.1
 
   '@myrmidon/cadmus-graph-pg-ex@16.0.1(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.1.5(04a885828d39791c89cf26990ae84b6d))(@myrmidon/cadmus-api@14.0.7(b774f5a2ab721dcce7feeb249b8586b2))(@myrmidon/cadmus-graph-ui-ex@16.0.1(f0ecd5196f4580e9fb3e999876334857))(@myrmidon/cadmus-graph-ui@15.0.1(7cc40e1573ae6b5c6b642db85dfdbb46))(@myrmidon/cadmus-refs-lookup@10.0.8(1394dfad8b7b6cd57211dcaca8fb4f66))(@myrmidon/ngx-mat-tools@1.0.1(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@myrmidon/ngx-tools@2.0.2(@angular/common@21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.1)))':
@@ -7621,7 +7621,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  maplibre-gl@5.18.0:
+  maplibre-gl@5.19.0:
     dependencies:
       '@mapbox/geojson-rewind': 0.5.2
       '@mapbox/jsonlint-lines-primitives': 2.0.2

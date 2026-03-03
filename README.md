@@ -11,7 +11,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 1. `pnpm run build-lib`.
 2. update version in `env.js` and `ng build --configuration production`.
-3. `docker build . -t vedph2020/cadmus-tes-app:0.0.2 -t vedph2020/cadmus-tes-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-tes-app:0.0.3 -t vedph2020/cadmus-tes-app:latest` (replace with the current version).
 
 ⚠️ Note: to enable Zotero lookup, you must add an `env.local.js` file next to the `env.js` file with a content like this:
 
@@ -38,6 +38,12 @@ Typically you do it in your host by adding a volume in the `docker-compose.yml` 
 
 ## History
 
+### 0.0.3
+
+- 2026-03-03: ⚠️ migrated to zoneless with the following changes:
+  - in `app.config`, replaced `provideZoneChangeDetection({ eventCoalescing: true }),` with `provideZonelessChangeDetection(),`.
+  - in `main.ts`, removed `import 'zone.js';`. No need to change `angular.json` which had no reference to zone.
+  - uninstalled `zone.js`
 - 2026-03-03: updated packages.
 - 2026-03-02:
   - updated Angular and packages.

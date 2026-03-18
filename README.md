@@ -38,6 +38,8 @@ Typically you do it in your host by adding a volume in the `docker-compose.yml` 
 
 ## History
 
+- 2026-03-18: migrated shell app to M3 themes and added dark theme support to components.
+
 ### 0.0.3
 
 - 2026-03-03: ⚠️ migrated to zoneless with the following changes:

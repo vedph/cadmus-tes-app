@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/cadmus-part-tes-site-resources",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cadmus - TES site resources part library",
   "keywords": [
     "Cadmus",
@@ -17,10 +17,10 @@
   "peerDependencies": {
     "@angular/common": "^21.1.0",
     "@angular/core": "^21.1.0",
-    "@myrmidon/ngx-tools": "^2.0.0",
-    "@myrmidon/cadmus-core": "^12.0.1",
-    "@myrmidon/cadmus-state": "^14.0.0",
-    "@myrmidon/cadmus-ui": "^14.0.0"
+    "@myrmidon/ngx-tools": "^2.0.2",
+    "@myrmidon/cadmus-core": "^12.0.3",
+    "@myrmidon/cadmus-state": "^15.0.0",
+    "@myrmidon/cadmus-ui": "^16.1.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

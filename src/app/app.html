@@ -67,10 +67,13 @@
         <mat-menu #adminMenu>
           <a mat-menu-item routerLink="/manage-users">Manage users</a>
           <a mat-menu-item routerLink="/register-user">Register user</a>
-          <a mat-menu-item routerLink="/profile/facets"> Import facets </a>
-          <a mat-menu-item routerLink="/profile/settings"> Import settings </a>
+          <mat-divider />
           <a mat-menu-item routerLink="/flags"> Flags </a>
           <a mat-menu-item routerLink="/thesauri"> Thesauri </a>
+          <a mat-menu-item routerLink="/profile/facets"> Facets </a>
+          <mat-divider />
+          <a mat-menu-item routerLink="/profile/import/facets"> Import facets </a>
+          <a mat-menu-item routerLink="/profile/import/settings"> Import settings </a>
         </mat-menu>
       </div>
     }

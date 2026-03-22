@@ -4,6 +4,7 @@ import { Subscription, take } from 'rxjs';
 
 // material
 import { MatButtonModule } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +26,7 @@ import { AppRepository } from '@myrmidon/cadmus-state';
   imports: [
     RouterModule,
     MatButtonModule,
+    MatDivider,
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,

@@ -38,6 +38,9 @@ Typically you do it in your host by adding a volume in the `docker-compose.yml` 
 
 ## History
 
+- 2026-03-22:
+  - 🆕 added facet editor, updating app routes and admin menus accordingly.
+  - updated Angular and packages.
 - 2026-03-19:
   - updated Angular and packages.
   - removed `@myrmidon/cadmus-ui-pg`.

@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 
@@ -35,6 +35,7 @@ import { AppRepository } from '@myrmidon/cadmus-state';
     ThemeToggleComponent
   ],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss',
 })
 export class App implements OnInit, OnDestroy {

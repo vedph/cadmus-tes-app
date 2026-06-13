@@ -9,8 +9,7 @@ import { provideRouter, withViewTransitions } from '@angular/router';
 
 import { provideNativeDateAdapter } from '@angular/material/core';
 
-import { NgeMonacoModule } from '@cisstech/nge/monaco';
-import { NgeMarkdownModule } from '@cisstech/nge/markdown';
+import { DefaultMonacoLoader, NGX_MONACO_LOADER_PROVIDER } from '@jean-merelis/ngx-monaco-editor';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
@@ -39,8 +38,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(withXhr(), withInterceptors([authJwtInterceptor])),
     provideNativeDateAdapter(),
-    importProvidersFrom(NgeMonacoModule.forRoot({})),
-    importProvidersFrom(NgeMarkdownModule),
+    {
+      provide: NGX_MONACO_LOADER_PROVIDER,
+      useFactory: () => new DefaultMonacoLoader({ paths: { vs: '/vs' } }),
+    },
     importProvidersFrom(
       NgxEchartsModule.forRoot({
         echarts: () => import('echarts'),

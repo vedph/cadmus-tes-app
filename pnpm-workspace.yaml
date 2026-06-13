@@ -6,3 +6,16 @@ allowBuilds:
   msgpackr-extract: true
 minimumReleaseAgeExclude:
   - ngx-markdown@22.0.0
+  - '@myrmidon/cadmus-fr-epigraphy-ligatures@13.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-formula-patterns@14.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-pg@15.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-scripts@14.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-signs@13.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-support-frr@13.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-support@14.0.0'
+  - '@myrmidon/cadmus-part-epigraphy-technique@13.0.0'
+  - '@myrmidon/cadmus-part-general-pg@18.0.0'
+  - '@myrmidon/cadmus-part-general-ui@18.0.1'
+  - '@myrmidon/cadmus-part-philology-pg@18.0.0'
+  - '@myrmidon/cadmus-part-philology-ui@19.0.1'
+  - '@rollup/rollup-win32-arm64-msvc@4.62.0'

@@ -19,3 +19,4 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-philology-pg@18.0.0'
   - '@myrmidon/cadmus-part-philology-ui@19.0.1'
   - '@rollup/rollup-win32-arm64-msvc@4.62.0'
+  - marked@18.0.7

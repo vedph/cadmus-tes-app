@@ -20,3 +20,8 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-philology-ui@19.0.1'
   - '@rollup/rollup-win32-arm64-msvc@4.62.0'
   - marked@18.0.7
+  - '@maplibre/ngx-maplibre-gl@22.0.0'
+  - '@myrmidon/cadmus-geo-location@1.0.1'
+  - '@myrmidon/cadmus-part-geo-asserted-locations@12.1.4'
+  - '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.4'
+  - '@myrmidon/cadmus-part-geo-pg@11.0.4'

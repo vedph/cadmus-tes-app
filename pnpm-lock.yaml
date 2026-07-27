@@ -39,8 +39,8 @@ importers:
         specifier: ^21.0.0
         version: 21.0.0(@angular/cdk@22.0.5(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2))(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(monaco-editor@0.55.1)
       '@maplibre/ngx-maplibre-gl':
-        specifier: ^21.0.2
-        version: 21.0.2(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@5.24.0)(rxjs@7.8.2)
+        specifier: ^22.0.0
+        version: 22.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@6.0.0)(rxjs@7.8.2)
       '@myrmidon/auth-jwt-admin':
         specifier: ^10.0.0
         version: 10.0.0(e17fcd0c6bb8f29115d9442db5d3f8bf)
@@ -63,8 +63,8 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0(d51d93286711f2a6bbdb8b23af34cb29)
       '@myrmidon/cadmus-geo-location':
-        specifier: ^1.0.0
-        version: 1.0.0(861287f213174d4e9fc2b3a71cde5842)
+        specifier: ^1.0.1
+        version: 1.0.1(5953d76ab8ecc51fce48d2f8a1889fc8)
       '@myrmidon/cadmus-graph-pg-ex':
         specifier: ^17.0.0
         version: 17.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/cadmus-api@15.0.1(71723ef9bcc93753bd8a27bfea3c5105))(@myrmidon/cadmus-graph-ui-ex@17.0.0(67b14d33c21f7432614a2c52e97e98eb))(@myrmidon/cadmus-graph-ui@16.0.0(292f12f6860da46a9c2ee6938cd77795))(@myrmidon/cadmus-refs-lookup@11.0.0(71cac2a08e4bf6719f98a343d2eb4b1e))(@myrmidon/ngx-mat-tools@2.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
@@ -117,14 +117,14 @@ importers:
         specifier: ^18.0.1
         version: 18.0.1(058f65d6a295a6672bb92c2331812b07)
       '@myrmidon/cadmus-part-geo-asserted-locations':
-        specifier: ^12.1.3
-        version: 12.1.3(06a770b0a15b5c4c95209f5b62a44d61)
+        specifier: ^12.1.4
+        version: 12.1.4(28fd1f9587ca4367a8343eec35af096c)
       '@myrmidon/cadmus-part-geo-asserted-toponyms':
-        specifier: ^11.1.3
-        version: 11.1.3(633e339ef8074c3952633ac8508b73f7)
+        specifier: ^11.1.4
+        version: 11.1.4(633e339ef8074c3952633ac8508b73f7)
       '@myrmidon/cadmus-part-geo-pg':
-        specifier: ^11.0.3
-        version: 11.0.3(b1c974feb220d1cec08b389b1592d51b)
+        specifier: ^11.0.4
+        version: 11.0.4(4458ba8a082ded2c2e28d4cb9b18d27e)
       '@myrmidon/cadmus-part-philology-pg':
         specifier: ^18.0.0
         version: 18.0.0(a2a274c4575233924549ea6baee23310)
@@ -237,8 +237,8 @@ importers:
         specifier: ^6.1.0
         version: 6.1.0
       maplibre-gl:
-        specifier: ^5.24.0
-        version: 5.24.0
+        specifier: ^6.0.0
+        version: 6.0.0
       marked:
         specifier: ^18.0.7
         version: 18.0.7
@@ -1223,9 +1223,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@mapbox/jsonlint-lines-primitives@2.0.2':
-    resolution: {integrity: sha512-rY0o9A5ECsTQRVhv7tL/OyDpGAoUB4tTvLiW1DSzQGq4bvTPhNw1VpSNjDJc5GFZ2XuyOtSWSVN05qOtcD71qQ==}
-    engines: {node: '>= 0.6'}
+  '@mapbox/jsonlint-lines-primitives@2.0.3':
+    resolution: {integrity: sha512-0SElaV0uMxEnxzBhhX9WTuPyUeMsAN/SS0i16tjuba4/mio63MG9khjC1a0JAiPGXAwvwm4UfHJURCN7nyudQg==}
+    engines: {node: '>= 22'}
 
   '@mapbox/point-geometry@1.1.0':
     resolution: {integrity: sha512-YGcBz1cg4ATXDCM/71L9xveh4dynfGmcLDqufR+nQQy3fKwsAZsWd/x4621/6uJaeB9mwOHE6hPeDgXz9uViUQ==}
@@ -1233,35 +1233,28 @@ packages:
   '@mapbox/tiny-sdf@2.2.0':
     resolution: {integrity: sha512-LVL4wgI9YAum5V+LNVQO6QgFBPw7/MIIY4XJPNsPDMrjEwcE+JfKk1LuIl8GnF197ejVdC9QdPaxrx5gfgdGXg==}
 
-  '@mapbox/unitbezier@0.0.1':
-    resolution: {integrity: sha512-nMkuDXFv60aBr9soUG5q+GvZYL+2KZHVvsqFCzqnkGEf46U2fvmytHaEVc1/YZbiLn8X+eR3QzX1+dwDO1lxlw==}
-
   '@mapbox/unitbezier@1.0.0':
     resolution: {integrity: sha512-fqd515fjBmANKGGsQ286E2Wvj/XvDFpGzwJxq4CI6jMQue6Oy04uCKp+JWKF00xRTmk6cEu1jPJ9p3xqH8YWqQ==}
 
-  '@mapbox/vector-tile@2.0.5':
-    resolution: {integrity: sha512-pXj8m7KTsqZt+1jsE0xIpGvqTSbblfkuEJL/NJmNePMtEwxO8V3XMDo9WMSfDeqHvCtBI9Lmt4mGcGR10zecmw==}
+  '@mapbox/vector-tile@3.0.0':
+    resolution: {integrity: sha512-Qf10S1uIHMk20ri/IVBnpS+esUEkVaR5Hftmz88jTInrpmWgPGJfPe3LVjjlE77trLx8tH6qjTG7uWH9hIq/0Q==}
 
-  '@mapbox/whoots-js@3.1.0':
-    resolution: {integrity: sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==}
-    engines: {node: '>=6.0.0'}
+  '@maplibre/geojson-vt@6.1.1':
+    resolution: {integrity: sha512-FVMOcmSP/yqol45t7StApEyTL5/vmqBCuFhH9n+fFuINenhaX+YgHHIt1yJ86S8kln3uJLcMvmEU2cfn6E2eCQ==}
 
-  '@maplibre/geojson-vt@6.1.0':
-    resolution: {integrity: sha512-2eIY4gZxeKIVOZVNkAMb+5NgXhgsMQpOveTQAvnp53LYqHGJZDidk7Ew0Tged9PThidpbS+NFTh0g4zivhPDzQ==}
-
-  '@maplibre/maplibre-gl-style-spec@24.10.0':
-    resolution: {integrity: sha512-lichxSiagMEBBrqHF0trtMQH9RKh+9jUlIJl0qW0QHvt2H/tbvUWdE+ZzI2Jd0/pT7j/iavLonlPu7EQ/ixTOw==}
+  '@maplibre/maplibre-gl-style-spec@26.2.1':
+    resolution: {integrity: sha512-QFKCXkOeSzOr8jF75jm6kySOg+dUvOehPhRi68gcOYPHb7U5JloUq0dJW0Y5/fZV8ygfT0Vp2RWodvq+fyxFWA==}
     hasBin: true
 
-  '@maplibre/mlt@1.1.11':
-    resolution: {integrity: sha512-dKvjKdITw9d0y3ndGkSqLUEpWCizMtdq8NB06cHohH/JZ2sJoM7dClR9wzJLUWykjbw9RXDFmhjjNBnNW27mzw==}
+  '@maplibre/mlt@1.1.12':
+    resolution: {integrity: sha512-ZeK5w2TTeHOajcLaEQs1KZXw2V9wIKo1PmThlxlsHoXsQsYlBqLJzPOd6tJHRtGTChUY3DPPmjXRArYVvAbmZw==}
 
-  '@maplibre/ngx-maplibre-gl@21.0.2':
-    resolution: {integrity: sha512-GT4T5LBPP3N/JIWvGOgNIVF+TqpDI0P1/U+FxIPCofWuHlo16Igby4elO31cIuHzNNdEPtxInQcQCodTItDeTA==}
+  '@maplibre/ngx-maplibre-gl@22.0.0':
+    resolution: {integrity: sha512-EGArVIOTZepnz97D7o/efSxCL1iDCQ13Azu1nidnEmBMYm8ePsdUPSGVY/ohaBW6BbDtQcjjFUFWgquWT9+Ejg==}
     peerDependencies:
-      '@angular/common': '>= 21.0.0'
-      '@angular/core': '>= 21.0.0'
-      maplibre-gl: '>= 5.15.0'
+      '@angular/common': '>= 22.0.0'
+      '@angular/core': '>= 22.0.0'
+      maplibre-gl: '>= 6.0.0'
       rxjs: '>= 7.8.1'
 
   '@maplibre/vt-pbf@4.3.2':
@@ -1374,16 +1367,16 @@ packages:
       '@myrmidon/cadmus-ui': ^17.0.0
       '@myrmidon/cadmus-ui-flag-set': ^10.0.0
 
-  '@myrmidon/cadmus-geo-location@1.0.0':
-    resolution: {integrity: sha512-l/Aj7mKeHjLxGIrpQQvVkP8f0nSx2A5aGmxU9TaV/srOwwoAczBdOH6iNabmm9b1t9Nipnd1U5puRAzkdIDJwA==}
+  '@myrmidon/cadmus-geo-location@1.0.1':
+    resolution: {integrity: sha512-SnAvAzE7Na3PZ95WohhmbCGVmDkphIgTzJ/l99msRFrfd1UiHBUO9ZcFmig3jwDQzt871L8GSsjNtgehwjG0QQ==}
     peerDependencies:
       '@angular/common': ^22.0.0
       '@angular/core': ^22.0.0
       '@angular/forms': ^22.0.0
       '@angular/material': ^22.0.0
-      '@maplibre/ngx-maplibre-gl': ^21.0.2
+      '@maplibre/ngx-maplibre-gl': ^22.0.0
       '@myrmidon/ngx-mat-tools': ^2.0.0
-      maplibre-gl: ^5.24.0
+      maplibre-gl: ^6.0.0
 
   '@myrmidon/cadmus-graph-pg-ex@17.0.0':
     resolution: {integrity: sha512-us0KOJ5iE4l23WV5x1gD/UN8TU67VhChAT221+OWN7LQlsRyp3pMiNIDCInATNpi51UHoQHbZgsg21hM6iSRdA==}
@@ -1623,43 +1616,44 @@ packages:
       '@myrmidon/ngx-mat-tools': ^2.0.0
       '@myrmidon/ngx-tools': ^3.0.0
 
-  '@myrmidon/cadmus-part-geo-asserted-locations@12.1.3':
-    resolution: {integrity: sha512-ClVjtvNjvy2f4z2ziG5+1IP+/b+hR+i0XEDcfnfoo3Z7Bgki2xUVx1usAtvsDmG+/PZI7x79HH6p3pv3Anwbxw==}
+  '@myrmidon/cadmus-part-geo-asserted-locations@12.1.4':
+    resolution: {integrity: sha512-IAnTv1G4EWR1HsI2Vsk+BSpLwOS+J5D3/JfdcoQTuMGM/9q9LT3/crPikFbZBXsmtwdjTVIFLyrtQ91pPwJ8Rw==}
     peerDependencies:
-      '@angular/common': ^20.0.0 || ^21.0.0
-      '@angular/core': ^20.0.0 || ^21.0.0
-      '@angular/material': ^20.0.0 || ^21.0.0
-      '@myrmidon/cadmus-core': ^12.0.3
-      '@myrmidon/cadmus-item-editor': ^16.1.3
-      '@myrmidon/cadmus-refs-assertion': ^10.0.6
-      '@myrmidon/cadmus-state': ^15.0.0
-      '@myrmidon/cadmus-ui': ^16.1.1
+      '@angular/common': ^22.0.8
+      '@angular/core': ^22.0.8
+      '@angular/material': ^22.0.6
+      '@myrmidon/cadmus-core': ^13.0.0
+      '@myrmidon/cadmus-geo-location': ^1.0.1
+      '@myrmidon/cadmus-item-editor': ^17.0.1
+      '@myrmidon/cadmus-refs-assertion': ^11.0.0
+      '@myrmidon/cadmus-state': ^16.0.0
+      '@myrmidon/cadmus-ui': ^17.0.1
 
-  '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.3':
-    resolution: {integrity: sha512-KXckvN1mujiM4uUXqtPo8v45jVVEb8l9+sMmmECBOxM5BrjtisDtLdBG0Y5/c8Dy8Teh8veiAFS/pOm7VJSjzg==}
+  '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.4':
+    resolution: {integrity: sha512-KVV2dmGQOJ8jTtBJmyf1gYF6bS3fx8tO/euCEjOP9rp8Y+YvWete5mhdJsOLs1dFPLnamFWlpqFR3oEssvkDBA==}
     peerDependencies:
-      '@angular/common': ^20.0.0 || ^21.0.0
-      '@angular/core': ^20.0.0 || ^21.0.0
-      '@angular/material': ^20.0.0 || ^21.0.0
-      '@myrmidon/cadmus-core': ^12.0.3
-      '@myrmidon/cadmus-item-editor': ^16.1.3
-      '@myrmidon/cadmus-refs-assertion': ^10.0.6
-      '@myrmidon/cadmus-refs-proper-name': ^10.0.6
-      '@myrmidon/cadmus-state': ^15.0.0
-      '@myrmidon/cadmus-ui': ^16.1.0
+      '@angular/common': ^22.0.8
+      '@angular/core': ^22.0.8
+      '@angular/material': ^22.0.6
+      '@myrmidon/cadmus-core': ^13.0.0
+      '@myrmidon/cadmus-item-editor': ^17.0.1
+      '@myrmidon/cadmus-refs-assertion': ^11.0.0
+      '@myrmidon/cadmus-refs-proper-name': ^11.0.0
+      '@myrmidon/cadmus-state': ^16.0.0
+      '@myrmidon/cadmus-ui': ^17.0.1
 
-  '@myrmidon/cadmus-part-geo-pg@11.0.3':
-    resolution: {integrity: sha512-9P23mvtSkddQDb6Q+E99R1bh2H4iwjQdn7w5iGdJ0g66I/hO6hklCprJC6pvaiIEjr1puyRU1yS8JPV5XOpJLA==}
+  '@myrmidon/cadmus-part-geo-pg@11.0.4':
+    resolution: {integrity: sha512-rneCi4XHd3sgPaXiEERRpQLDSPG6ffd+x46fLSKEi9/gBp6z9wJ/tJ32/ArPz6raxzFbWreQB2pbtrFmUyQ99g==}
     peerDependencies:
-      '@angular/common': ^20.0.0 || ^21.0.0
-      '@angular/core': ^20.0.0 || ^21.0.0
-      '@angular/material': ^20.0.0 || ^21.0.0
-      '@myrmidon/cadmus-core': ^12.0.3
-      '@myrmidon/cadmus-item-editor': ^16.1.3
-      '@myrmidon/cadmus-part-geo-asserted-locations': ^12.1.2
-      '@myrmidon/cadmus-part-geo-asserted-toponyms': ^11.1.2
-      '@myrmidon/cadmus-state': ^15.0.0
-      '@myrmidon/cadmus-ui': ^16.1.1
+      '@angular/common': ^22.0.8
+      '@angular/core': ^22.0.8
+      '@angular/material': ^22.0.6
+      '@myrmidon/cadmus-core': ^13.0.0
+      '@myrmidon/cadmus-item-editor': ^17.0.1
+      '@myrmidon/cadmus-part-geo-asserted-locations': ^12.1.4
+      '@myrmidon/cadmus-part-geo-asserted-toponyms': ^11.1.4
+      '@myrmidon/cadmus-state': ^16.0.0
+      '@myrmidon/cadmus-ui': ^17.0.1
 
   '@myrmidon/cadmus-part-philology-pg@18.0.0':
     resolution: {integrity: sha512-cZMZoFgGwRn37A+ofIMVUN2hXEbi5rlL9i5Ycv0fkC2Zd/ajncn0qP4o4cnMT1pfFAUSXXFbBDzYoc/pJUOGAw==}
@@ -3010,8 +3004,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  earcut@3.0.2:
-    resolution: {integrity: sha512-X7hshQbLyMJ/3RPhyObLARM2sNxxmRALLKx1+NVFFnQ9gKzmCrxm9+uLIAdBcvc8FNLpctqlQ2V6AE92Ol9UDQ==}
+  earcut@3.2.3:
+    resolution: {integrity: sha512-vnS4AVwp1KHAF13i1vp1/2D5evWy3k5u/iW/B81QVsUZtV8cv2tU0b2VNFlqvh4kYwrFMDdjPCfAmfyJW9y14Q==}
 
   echarts@6.1.0:
     resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
@@ -3443,8 +3437,8 @@ packages:
     resolution: {integrity: sha512-Je0fLJ0F5atA7F+eIlLzk+Wkcl57JDf4kf+EW8xiP5E31xOQxkIxTbgf1Oi1Lw9tRI9UEMRdI5Vz2xTzoNU1Jw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  maplibre-gl@5.24.0:
-    resolution: {integrity: sha512-ALyFxgtd5R+65UqZ/++lOqwWcC0SNho9c27fYSyLmG7AfnAul2o46F05aDJGPbFU57wos9dgcIySHs0Xe6ia3A==}
+  maplibre-gl@6.0.0:
+    resolution: {integrity: sha512-1wBgEhzTZfA+cDpFdt0fM1mJA5mJ90fifORJ7D8JcKLJCvPT/iTx9bNxkP7DqEYde65DJd7gE7h83khwNRqdyg==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
 
   marked@14.0.0:
@@ -3759,12 +3753,12 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  pbf@4.0.2:
-    resolution: {integrity: sha512-J0ajxARhZfpUEebxYs1vhMGMuLSXtBe1e+fFPDrf2uA2hgo+UshKfNUWOz92HJNz6/NFEXseQPddnHkTreWRqg==}
-    hasBin: true
-
   pbf@5.1.0:
     resolution: {integrity: sha512-Wv0yo0+uZepnoNEKsquhar1F18LogB8oeEikIhUXG16udbiXG7JecHGySwoo6kuMgjmbQYzdrTZlO+/K9t8eZg==}
+    hasBin: true
+
+  pbf@5.1.2:
+    resolution: {integrity: sha512-mnvGdvOrIvJOBGUEdGkrVXjN8E/VkIJCkf2eS1DH2yv82ORUlLttmDt0rWY38yYZmVwciZwBUvHM20qxBZf40w==}
     hasBin: true
 
   picocolors@1.1.1:
@@ -5141,46 +5135,42 @@ snapshots:
   '@lmdb/lmdb-win32-x64@3.5.4':
     optional: true
 
-  '@mapbox/jsonlint-lines-primitives@2.0.2': {}
+  '@mapbox/jsonlint-lines-primitives@2.0.3': {}
 
   '@mapbox/point-geometry@1.1.0': {}
 
   '@mapbox/tiny-sdf@2.2.0': {}
 
-  '@mapbox/unitbezier@0.0.1': {}
-
   '@mapbox/unitbezier@1.0.0': {}
 
-  '@mapbox/vector-tile@2.0.5':
+  '@mapbox/vector-tile@3.0.0':
     dependencies:
       '@mapbox/point-geometry': 1.1.0
       '@types/geojson': 7946.0.16
-      pbf: 4.0.2
+      pbf: 5.1.0
 
-  '@mapbox/whoots-js@3.1.0': {}
-
-  '@maplibre/geojson-vt@6.1.0':
+  '@maplibre/geojson-vt@6.1.1':
     dependencies:
       kdbush: 4.1.0
 
-  '@maplibre/maplibre-gl-style-spec@24.10.0':
+  '@maplibre/maplibre-gl-style-spec@26.2.1':
     dependencies:
-      '@mapbox/jsonlint-lines-primitives': 2.0.2
+      '@mapbox/jsonlint-lines-primitives': 2.0.3
       '@mapbox/unitbezier': 1.0.0
       json-stringify-pretty-compact: 4.0.0
       minimist: 1.2.8
       quickselect: 3.0.0
       tinyqueue: 3.0.0
 
-  '@maplibre/mlt@1.1.11':
+  '@maplibre/mlt@1.1.12':
     dependencies:
       '@mapbox/point-geometry': 1.1.0
 
-  '@maplibre/ngx-maplibre-gl@21.0.2(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@5.24.0)(rxjs@7.8.2)':
+  '@maplibre/ngx-maplibre-gl@22.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@6.0.0)(rxjs@7.8.2)':
     dependencies:
       '@angular/common': 22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)
-      maplibre-gl: 5.24.0
+      maplibre-gl: 6.0.0
       rxjs: 7.8.2
       tslib: 2.8.1
 
@@ -5297,17 +5287,17 @@ snapshots:
       '@myrmidon/cadmus-ui-flag-set': 10.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-geo-location@1.0.0(861287f213174d4e9fc2b3a71cde5842)':
+  '@myrmidon/cadmus-geo-location@1.0.1(5953d76ab8ecc51fce48d2f8a1889fc8)':
     dependencies:
       '@angular/common': 22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)
       '@angular/forms': 22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
       '@angular/material': 22.0.5(ae5d0f71be455492d9377b9420afd51c)
-      '@maplibre/ngx-maplibre-gl': 21.0.2(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@5.24.0)(rxjs@7.8.2)
+      '@maplibre/ngx-maplibre-gl': 22.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(maplibre-gl@6.0.0)(rxjs@7.8.2)
       '@myrmidon/ngx-mat-tools': 2.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))
       '@terraformer/wkt': 2.2.2
       '@types/geojson': 7946.0.16
-      maplibre-gl: 5.24.0
+      maplibre-gl: 6.0.0
       tslib: 2.8.1
 
   '@myrmidon/cadmus-graph-pg-ex@17.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/cadmus-api@15.0.1(71723ef9bcc93753bd8a27bfea3c5105))(@myrmidon/cadmus-graph-ui-ex@17.0.0(67b14d33c21f7432614a2c52e97e98eb))(@myrmidon/cadmus-graph-ui@16.0.0(292f12f6860da46a9c2ee6938cd77795))(@myrmidon/cadmus-refs-lookup@11.0.0(71cac2a08e4bf6719f98a343d2eb4b1e))(@myrmidon/ngx-mat-tools@2.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))':
@@ -5549,19 +5539,20 @@ snapshots:
       marked: 18.0.6
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-part-geo-asserted-locations@12.1.3(06a770b0a15b5c4c95209f5b62a44d61)':
+  '@myrmidon/cadmus-part-geo-asserted-locations@12.1.4(28fd1f9587ca4367a8343eec35af096c)':
     dependencies:
       '@angular/common': 22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)
       '@angular/material': 22.0.5(ae5d0f71be455492d9377b9420afd51c)
       '@myrmidon/cadmus-core': 13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
+      '@myrmidon/cadmus-geo-location': 1.0.1(5953d76ab8ecc51fce48d2f8a1889fc8)
       '@myrmidon/cadmus-item-editor': 17.0.1(e7309713db7720b0004b4daf023b76e3)
       '@myrmidon/cadmus-refs-assertion': 11.0.0(675f6284fdcbba798060e8ed5d0146e4)
       '@myrmidon/cadmus-state': 16.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/cadmus-api@15.0.1(71723ef9bcc93753bd8a27bfea3c5105))(@myrmidon/cadmus-core@13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       '@myrmidon/cadmus-ui': 17.0.1(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/cadmus-core@13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))))(@myrmidon/cadmus-refs-lookup@11.0.0(71cac2a08e4bf6719f98a343d2eb4b1e))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.3(633e339ef8074c3952633ac8508b73f7)':
+  '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.4(633e339ef8074c3952633ac8508b73f7)':
     dependencies:
       '@angular/common': 22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)
@@ -5574,15 +5565,15 @@ snapshots:
       '@myrmidon/cadmus-ui': 17.0.1(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/cadmus-core@13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))))(@myrmidon/cadmus-refs-lookup@11.0.0(71cac2a08e4bf6719f98a343d2eb4b1e))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       tslib: 2.8.1
 
-  '@myrmidon/cadmus-part-geo-pg@11.0.3(b1c974feb220d1cec08b389b1592d51b)':
+  '@myrmidon/cadmus-part-geo-pg@11.0.4(4458ba8a082ded2c2e28d4cb9b18d27e)':
     dependencies:
       '@angular/common': 22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)
       '@angular/material': 22.0.5(ae5d0f71be455492d9377b9420afd51c)
       '@myrmidon/cadmus-core': 13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       '@myrmidon/cadmus-item-editor': 17.0.1(e7309713db7720b0004b4daf023b76e3)
-      '@myrmidon/cadmus-part-geo-asserted-locations': 12.1.3(06a770b0a15b5c4c95209f5b62a44d61)
-      '@myrmidon/cadmus-part-geo-asserted-toponyms': 11.1.3(633e339ef8074c3952633ac8508b73f7)
+      '@myrmidon/cadmus-part-geo-asserted-locations': 12.1.4(28fd1f9587ca4367a8343eec35af096c)
+      '@myrmidon/cadmus-part-geo-asserted-toponyms': 11.1.4(633e339ef8074c3952633ac8508b73f7)
       '@myrmidon/cadmus-state': 16.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/cadmus-api@15.0.1(71723ef9bcc93753bd8a27bfea3c5105))(@myrmidon/cadmus-core@13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       '@myrmidon/cadmus-ui': 17.0.1(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/material@22.0.5(ae5d0f71be455492d9377b9420afd51c))(@myrmidon/cadmus-core@13.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))))(@myrmidon/cadmus-refs-lookup@11.0.0(71cac2a08e4bf6719f98a343d2eb4b1e))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)(zone.js@0.16.2)))
       tslib: 2.8.1
@@ -6792,7 +6783,7 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  earcut@3.0.2: {}
+  earcut@3.2.3: {}
 
   echarts@6.1.0:
     dependencies:
@@ -7318,24 +7309,22 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  maplibre-gl@5.24.0:
+  maplibre-gl@6.0.0:
     dependencies:
-      '@mapbox/jsonlint-lines-primitives': 2.0.2
       '@mapbox/point-geometry': 1.1.0
       '@mapbox/tiny-sdf': 2.2.0
-      '@mapbox/unitbezier': 0.0.1
-      '@mapbox/vector-tile': 2.0.5
-      '@mapbox/whoots-js': 3.1.0
-      '@maplibre/geojson-vt': 6.1.0
-      '@maplibre/maplibre-gl-style-spec': 24.10.0
-      '@maplibre/mlt': 1.1.11
+      '@mapbox/unitbezier': 1.0.0
+      '@mapbox/vector-tile': 3.0.0
+      '@maplibre/geojson-vt': 6.1.1
+      '@maplibre/maplibre-gl-style-spec': 26.2.1
+      '@maplibre/mlt': 1.1.12
       '@maplibre/vt-pbf': 4.3.2
       '@types/geojson': 7946.0.16
-      earcut: 3.0.2
+      earcut: 3.2.3
       gl-matrix: 3.4.4
       kdbush: 4.1.0
       murmurhash-js: 1.0.0
-      pbf: 4.0.2
+      pbf: 5.1.2
       potpack: 2.1.0
       quickselect: 3.0.0
       tinyqueue: 3.0.0
@@ -7666,11 +7655,11 @@ snapshots:
 
   pathe@2.0.3: {}
 
-  pbf@4.0.2:
+  pbf@5.1.0:
     dependencies:
       resolve-protobuf-schema: 2.1.0
 
-  pbf@5.1.0:
+  pbf@5.1.2:
     dependencies:
       resolve-protobuf-schema: 2.1.0
 

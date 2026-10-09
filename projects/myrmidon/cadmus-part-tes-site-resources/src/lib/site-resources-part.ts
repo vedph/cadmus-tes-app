@@ -17,10 +17,10 @@ export interface SiteResource {
 }
 
 /**
- * The SiteResources part model.
+ * The site resources part model.
  */
 export interface SiteResourcesPart extends Part {
-  resources?: SiteResource[];
+  resources: SiteResource[];
 }
 
 /**

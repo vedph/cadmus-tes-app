@@ -8,6 +8,9 @@ import { CurrentItemBarComponent } from '@myrmidon/cadmus-item-editor';
 
 import { SiteResourcesPartComponent } from '../site-resources-part/site-resources-part.component';
 
+/**
+ * Wrapper for SiteResourcesPart.
+ */
 @Component({
   selector: 'cadmus-site-resources-part-feature',
   imports: [CurrentItemBarComponent, SiteResourcesPartComponent],

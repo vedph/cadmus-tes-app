@@ -32,6 +32,9 @@ import { ThesaurusEntriesPickerComponent } from '@myrmidon/cadmus-thesaurus-stor
 
 import { SiteResource } from '../../site-resources-part';
 
+/**
+ * Dummy editor component for a site resource.
+ */
 @Component({
   selector: 'cadmus-site-resource-editor',
   imports: [

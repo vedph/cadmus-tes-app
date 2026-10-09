@@ -468,4 +468,44 @@ describe('SiteResourcesPartComponent', () => {
       expect(screen.queryByRole('table')).toBeNull();
     });
   });
+
+  describe('signal forms behavior', () => {
+    it('stays pristine when data is bound', async () => {
+      const { dirtyChange } = await setup();
+      expect(dirtyChange).not.toHaveBeenCalledWith(true);
+    });
+
+    it('renders no form element', async () => {
+      const { container } = await setup();
+      expect(container.querySelector('form')).toBeNull();
+    });
+
+    it('does not save the part on Enter in the resource editor', async () => {
+      const { user, dataChange } = await setup();
+
+      await user.click(getRowButton(1, 'Edit this resource'));
+      await user.type(screen.getByRole('textbox', { name: 'EID' }), 'x{Enter}');
+
+      // Enter accepts the resource, not the part
+      expect(getRows().map((r) => r[0])).toEqual(['r1', 'r2x', 'r3']);
+      expect(dataChange).not.toHaveBeenCalled();
+    });
+
+    it('saves a part carrying no form Symbol tags', async () => {
+      const { user, dataChange } = await setup();
+
+      await user.click(getRowButton(0, 'Move this resource down'));
+      await user.click(screen.getByRole('button', { name: 'save' }));
+
+      const resources = getSavedResources(dataChange);
+      expect(resources.every((r) => !Object.getOwnPropertySymbols(r).length)).toBe(true);
+      // compared through JSON, as the form may tag array items
+      expect(JSON.parse(JSON.stringify(resources))).toEqual([
+        RESOURCES[1],
+        RESOURCES[0],
+        RESOURCES[2],
+      ]);
+    });
+
+  });
 });

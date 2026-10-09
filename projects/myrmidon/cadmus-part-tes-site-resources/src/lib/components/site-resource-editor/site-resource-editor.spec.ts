@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormField } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MATERIAL_ANIMATIONS } from '@angular/material/core';
@@ -52,7 +52,8 @@ class ThesaurusEntriesPickerStub {
   selector: 'cadmus-asserted-location',
   template: `<p>location: {{ location()?.value?.label }}</p>
     <p>location assertion tags: {{ assTagEntries()?.length ?? 0 }}</p>
-    <button type="button" (click)="locationChange.emit(value)">set location</button>`,
+    <button type="button" (click)="locationChange.emit(value)">set location</button>
+    <button type="button" (click)="echo()">echo location</button>`,
 })
 class AssertedLocationStub {
   public readonly value = LOCATION;
@@ -63,6 +64,14 @@ class AssertedLocationStub {
   public readonly refTagEntries = input<ThesaurusEntry[]>();
   public readonly lookupProviderOptions = input<unknown>();
   public readonly locationChange = output<AssertedLocation>();
+
+  // emit a normalized copy of the received location (nulls dropped), as
+  // autosaving child editors do right after getting it
+  public echo(): void {
+    this.locationChange.emit(
+      JSON.parse(JSON.stringify(this.location(), (_, v) => (v === null ? undefined : v))),
+    );
+  }
 }
 
 @Component({
@@ -95,7 +104,7 @@ class DecoratedCountsStub {
 }
 
 const COMPONENT_IMPORTS = [
-  ReactiveFormsModule,
+  FormField,
   MatButtonModule,
   MatCheckboxModule,
   MatFormFieldModule,
@@ -224,10 +233,20 @@ describe('SiteResourceEditor', () => {
       expect(resourceChange).not.toHaveBeenCalled();
     });
 
-    it('signals a type too long', async () => {
+    it('limits the typed type to its maximum length', async () => {
       const { user } = await setup({ resource: { type: 'q' } });
+      const input = screen.getByRole('textbox', { name: 'type' });
 
-      await user.type(screen.getByRole('textbox', { name: 'type' }), 'x'.repeat(100));
+      // the maxLength rule sets the native maxlength attribute
+      await user.type(input, 'x'.repeat(100));
+
+      expect((input as HTMLInputElement).value.length).toBe(100);
+    });
+
+    it('signals a type too long', async () => {
+      const { user } = await setup({ resource: { type: 'x'.repeat(101) } });
+
+      await user.click(screen.getByRole('textbox', { name: 'type' }));
       await user.tab();
 
       expect(screen.getByText('type too long')).toBeTruthy();
@@ -501,6 +520,70 @@ describe('SiteResourceEditor', () => {
 
       expect(resourceChange).toHaveBeenCalledTimes(1);
       expect(outerSubmit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('signal forms behavior', () => {
+    it('renders no form element', async () => {
+      const { container } = await setup({ resource: { type: 'quarry' } });
+      expect(container.querySelector('form')).toBeNull();
+    });
+
+    it('stays pristine when a child editor echoes its value', async () => {
+      const { user } = await setup({
+        resource: { type: 'quarry', location: { ...LOCATION, tag: null } as unknown as AssertedLocation },
+      });
+
+      await user.click(screen.getByRole('button', { name: 'echo location' }));
+
+      expect(acceptButton().disabled).toBe(true);
+    });
+
+    it('gets pristine again when an edit is reverted', async () => {
+      const { user } = await setup({ resource: { eid: 'r1', type: 'quarry' } });
+      const eid = screen.getByRole('textbox', { name: 'EID' });
+
+      await user.type(eid, 'x');
+      expect(acceptButton().disabled).toBe(false);
+      await user.type(eid, '{Backspace}');
+
+      expect(acceptButton().disabled).toBe(true);
+    });
+
+    it('keeps the typed text when its own save echoes back normalized', async () => {
+      const { user, resourceChange, fixture } = await setup({ resource: { type: 'quarry' } });
+      const eid = screen.getByRole('textbox', { name: 'EID' });
+
+      await user.type(eid, 'abc ');
+      await user.click(acceptButton());
+      await fixture.whenStable();
+
+      // the model got the trimmed value...
+      expect((resourceChange.mock.calls[0][0] as SiteResource).eid).toBe('abc');
+      // ...but the draft still holds what the user typed
+      expect(eid).toHaveProperty('value', 'abc ');
+
+      await user.type(eid, 'd');
+      await user.click(acceptButton());
+
+      expect(eid).toHaveProperty('value', 'abc d');
+      expect((resourceChange.mock.calls[1][0] as SiteResource).eid).toBe('abc d');
+    });
+
+    it('saves a resource carrying no form Symbol tags', async () => {
+      const { user, resourceChange } = await setup({
+        countIdEntries: [{ id: 'blocks', value: 'blocks' }],
+        resource: { type: 'quarry', counts: [{ id: 'old', value: 1 }] },
+      });
+
+      await user.click(screen.getByRole('button', { name: 'set counts' }));
+      await user.click(acceptButton());
+
+      const saved = resourceChange.mock.calls[0][0] as SiteResource;
+      expect(saved.counts).toEqual(COUNTS);
+      expect(Object.getOwnPropertySymbols(saved.counts![0])).toEqual([]);
+      // the child's own objects were not adopted by the form
+      expect(Object.getOwnPropertySymbols(COUNTS[0])).toEqual([]);
     });
   });
 });

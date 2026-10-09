@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/cadmus-part-tes-pg",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Cadmus - TES-specific routes.",
   "keywords": [
     "Cadmus",
@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@angular/common": "^22.2.1",
     "@angular/core": "^22.2.1",
-    "@myrmidon/cadmus-part-tes-site-resources": "^1.0.1"
+    "@myrmidon/cadmus-part-tes-site-resources": "^2.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

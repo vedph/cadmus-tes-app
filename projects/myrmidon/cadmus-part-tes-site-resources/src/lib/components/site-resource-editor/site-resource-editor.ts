@@ -1,20 +1,15 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   input,
+  linkedSignal,
   model,
   output,
   untracked,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormField, form, maxLength, required } from '@angular/forms/signals';
 
 // material
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
+import { copyFormValue, isImplicitSubmission, setFieldFromChild } from '@myrmidon/cadmus-ui';
 import { DecoratedCount, DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
 import {
   AssertedHistoricalDate,
@@ -41,13 +37,60 @@ import { ThesaurusEntriesPickerComponent } from '@myrmidon/cadmus-thesaurus-stor
 import { SiteResource } from '../../site-resources-part';
 
 /**
- * Dummy editor component for a site resource.
+ * The editable shape behind the form.
+ */
+interface SiteResourceControls {
+  eid: string;
+  type: string;
+  tag: string;
+  features: string[];
+  hasLocation: boolean;
+  location: AssertedLocation | null;
+  hasDate: boolean;
+  date: AssertedHistoricalDate | null;
+  counts: DecoratedCount[];
+}
+
+/**
+ * Resource -> editable draft.
+ */
+function toDraft(resource?: SiteResource | null): SiteResourceControls {
+  return {
+    eid: resource?.eid || '',
+    type: resource?.type || '',
+    tag: resource?.tag || '',
+    features: [...(resource?.features || [])],
+    hasLocation: !!resource?.location,
+    location: copyFormValue(resource?.location || null),
+    hasDate: !!resource?.date,
+    date: copyFormValue(resource?.date || null),
+    counts: copyFormValue(resource?.counts || []),
+  };
+}
+
+/**
+ * Editable draft -> resource.
+ */
+function toModel(draft: SiteResourceControls): SiteResource {
+  return {
+    eid: draft.eid.trim() || undefined,
+    type: draft.type,
+    tag: draft.tag.trim() || undefined,
+    features: draft.features.length ? [...draft.features] : undefined,
+    location: draft.hasLocation ? copyFormValue(draft.location || undefined) : undefined,
+    date: draft.hasDate ? copyFormValue(draft.date || undefined) : undefined,
+    counts: draft.counts.length ? copyFormValue(draft.counts) : undefined,
+  };
+}
+
+/**
+ * Editor component for a site resource. The resource is saved only when
+ * the user accepts the changes.
  */
 @Component({
   selector: 'cadmus-site-resource-editor',
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    FormField,
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
@@ -98,127 +141,85 @@ export class SiteResourceEditor {
 
   public readonly lookupProviderOptions = input<LookupProviderOptions | undefined>();
 
-  public eid: FormControl<string | null>;
-  public type: FormControl<string>;
-  public tag: FormControl<string | null>;
-  public features: FormControl<ThesaurusEntry[]>;
-  public hasLocation: FormControl<boolean>;
-  public location: FormControl<AssertedLocation | null>;
-  public hasDate: FormControl<boolean>;
-  public date: FormControl<AssertedHistoricalDate | null>;
-  public counts: FormControl<DecoratedCount[]>;
-  public form: FormGroup;
+  /**
+   * The editable draft, rebuilt from each new resource. The echo of our
+   * own save (equal to what the draft maps to) keeps the draft as it is,
+   * because toModel() normalizes it (e.g. trimming).
+   */
+  private readonly _draft = linkedSignal<SiteResource | undefined, SiteResourceControls>({
+    source: () => this.resource(),
+    computation: (resource, previous) =>
+      previous && JSON.stringify(resource) === JSON.stringify(toModel(previous.value))
+        ? previous.value
+        : toDraft(resource),
+  });
 
-  constructor(formBuilder: FormBuilder) {
-    // form
-    this.eid = new FormControl<string | null>(null);
-    this.type = new FormControl<string>('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(100)],
-    });
-    this.tag = new FormControl<string | null>(null);
-    this.features = new FormControl<ThesaurusEntry[]>([], { nonNullable: true });
-    this.hasLocation = new FormControl<boolean>(false, { nonNullable: true });
-    this.location = new FormControl<AssertedLocation | null>(null);
-    this.hasDate = new FormControl<boolean>(false, { nonNullable: true });
-    this.date = new FormControl<AssertedHistoricalDate | null>(null);
-    this.counts = new FormControl<DecoratedCount[]>([], { nonNullable: true });
-    this.form = formBuilder.group({
-      eid: this.eid,
-      type: this.type,
-      tag: this.tag,
-      features: this.features,
-      hasLocation: this.hasLocation,
-      location: this.location,
-      hasDate: this.hasDate,
-      date: this.date,
-      counts: this.counts,
-    });
+  public readonly form = form(this._draft, (p) => {
+    required(p.type);
+    maxLength(p.type, 100);
+  });
 
-    // when model changes, update form
+  /**
+   * The picked features as thesaurus entries, so that the picker can show
+   * their labels. Features not found in the thesaurus show their ID.
+   */
+  public readonly pickedFeatures = computed<ThesaurusEntry[]>(() => {
+    const entries = this.featureEntries();
+    return this.form
+      .features()
+      .value()
+      .map((id) => entries?.find((e) => e.id === id) || { id, value: id });
+  });
+
+  constructor() {
+    // once the draft mirrors the bound resource again, there are no
+    // unsaved edits: clear the interaction state (touched, dirty).
+    // Keyed on the draft, which does not change on the echo of a save.
     effect(() => {
-      const data = this.resource();
-      this.updateForm(data);
+      const draft = this._draft();
+      untracked(() => {
+        if (this.isDraftInSync(draft)) {
+          this.form().reset();
+        }
+      });
     });
-  }
-
-  private mapIdsToEntries(ids: string[], entries: ThesaurusEntry[] | undefined): ThesaurusEntry[] {
-    if (!entries) return ids.map((id) => ({ id, value: id }));
-    return ids.map((id) => entries.find((e) => e.id === id) || { id, value: id });
-  }
-
-  private updateForm(data: SiteResource | undefined | null): void {
-    if (!data) {
-      this.form.reset();
-    } else {
-      this.eid.setValue(data.eid ?? null);
-      this.type.setValue(data.type);
-      this.tag.setValue(data.tag ?? null);
-      // resolve feature IDs into their thesaurus entries (if any) so that
-      // the picker can display their labels; untracked so that a change in
-      // the entries does not reset the form being edited
-      this.features.setValue(
-        this.mapIdsToEntries(
-          data.features ?? [],
-          untracked(() => this.featureEntries()),
-        ),
-      );
-      this.hasLocation.setValue(!!data.location);
-      this.location.setValue(data.location ?? null);
-      this.hasDate.setValue(!!data.date);
-      this.date.setValue(data.date ?? null);
-      this.counts.setValue(data.counts ?? []);
-      this.form.markAsPristine();
-    }
-  }
-
-  private getData(): SiteResource {
-    return {
-      eid: this.eid.value?.trim() || undefined,
-      type: this.type.value,
-      tag: this.tag.value?.trim() || undefined,
-      features: this.features.value.length ? this.features.value.map((e) => e.id) : undefined,
-      location: this.hasLocation.value ? (this.location.value ?? undefined) : undefined,
-      date: this.hasDate.value ? (this.date.value ?? undefined) : undefined,
-      counts: this.counts.value?.length ? this.counts.value : undefined,
-    };
-  }
-
-  public onFeatureEntriesChange(entries: ThesaurusEntry[]): void {
-    this.features.setValue(entries);
-    this.features.markAsDirty();
-    this.features.updateValueAndValidity();
-  }
-
-  public onLocationChange(location: AssertedLocation | null): void {
-    this.location.setValue(location);
-    this.location.markAsDirty();
-    this.location.updateValueAndValidity();
-  }
-
-  public onDateChange(date: AssertedHistoricalDate | null): void {
-    this.date.setValue(date);
-    this.date.markAsDirty();
-    this.date.updateValueAndValidity();
-  }
-
-  public onCountsChange(counts: DecoratedCount[]): void {
-    this.counts.setValue(counts);
-    this.counts.markAsDirty();
-    this.counts.updateValueAndValidity();
   }
 
   /**
-   * Handle the form submit event. As this form is nested inside the part
-   * editor form, the event must not propagate to the parent form, which
-   * would otherwise save the whole part.
-   * @param event The submit event.
+   * True when the draft still mirrors the bound resource.
    */
-  public onSubmit(event?: Event): void {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
+  private isDraftInSync(draft: SiteResourceControls): boolean {
+    return JSON.stringify(draft) === JSON.stringify(toDraft(this.resource()));
+  }
+
+  public onFeatureEntriesChange(entries: ThesaurusEntry[]): void {
+    this.form.features().value.set(entries.map((e) => e.id));
+    this.form.features().markAsDirty();
+  }
+
+  public onLocationChange(location: AssertedLocation | undefined): void {
+    setFieldFromChild(this.form.location, copyFormValue(location || null));
+  }
+
+  public onDateChange(date: AssertedHistoricalDate | undefined): void {
+    setFieldFromChild(this.form.date, copyFormValue(date || null));
+  }
+
+  public onCountsChange(counts: DecoratedCount[]): void {
+    setFieldFromChild(this.form.counts, copyFormValue(counts || []));
+  }
+
+  /**
+   * Handle Enter in this editor: in a text input, save as the accept
+   * button would, when enabled. This replaces the implicit submission of
+   * the form this editor used to render.
+   * @param event The keydown event.
+   */
+  public onEnterKey(event: Event): void {
+    if (!isImplicitSubmission(event) || this.form().invalid() || !this.form().dirty()) {
+      return;
     }
+    event.preventDefault();
     this.save();
   }
 
@@ -227,25 +228,21 @@ export class SiteResourceEditor {
   }
 
   /**
-   * Saves the current form data by updating the `data` model signal.
-   * This method can be called manually (e.g., by a Save button) or
-   * automatically (via auto-save).
-   * @param pristine If true (default), the form is marked as pristine
-   * after saving.
-   * Set to false for auto-save if you want the form to remain dirty.
+   * Save the current draft into the `resource` model signal.
+   * @param pristine If true (default), the form's interaction state is
+   * cleared after saving.
    */
   public save(pristine = true): void {
-    if (this.form.invalid) {
+    if (this.form().invalid()) {
       // show validation errors
-      this.form.markAllAsTouched();
+      this.form().markAsTouched();
       return;
     }
 
-    const data = this.getData();
-    this.resource.set(data);
+    this.resource.set(toModel(this._draft()));
 
     if (pristine) {
-      this.form.markAsPristine();
+      this.form().reset();
     }
   }
 }

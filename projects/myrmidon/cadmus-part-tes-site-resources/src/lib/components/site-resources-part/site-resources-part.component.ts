@@ -1,27 +1,28 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  UntypedFormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 
-import { CommonModule } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
+import { FlatLookupPipe, NgxToolsSignalValidators } from '@myrmidon/ngx-tools';
 import { DialogService } from '@myrmidon/ngx-mat-tools';
-import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { CloseSaveButtonsComponent, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
-import { EditedObject, ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import {
+  CloseSaveButtonsComponent,
+  HelpLinkComponent,
+  ModelEditorComponentBase,
+  copyFormValue,
+} from '@myrmidon/cadmus-ui';
+import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
 import { HistoricalDatePipe } from '@myrmidon/cadmus-refs-historical-date';
 
@@ -36,6 +37,15 @@ interface SiteResourcesPartSettings {
   lookupProviderOptions?: LookupProviderOptions;
 }
 
+interface SiteResourcesPartControls {
+  entries: SiteResource[];
+}
+
+function toDraft(part?: SiteResourcesPart | null): SiteResourcesPartControls {
+  // copy: the form tags the objects in its arrays
+  return { entries: copyFormValue(part?.resources || []) };
+}
+
 /**
  * Site resources part editor component.
  * Thesauri: site-resource-types, site-resource-tags, site-resource-features, asserted-historical-date-tags,
@@ -46,184 +56,110 @@ interface SiteResourcesPartSettings {
 @Component({
   selector: 'cadmus-site-resources-part',
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    TitleCasePipe,
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
-    MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
-    MatSelectModule,
     MatTooltipModule,
     // cadmus
     CloseSaveButtonsComponent,
     FlatLookupPipe,
     HistoricalDatePipe,
-    SiteResourceEditor
+    SiteResourceEditor,
+    HelpLinkComponent,
   ],
   templateUrl: './site-resources-part.component.html',
   styleUrl: './site-resources-part.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SiteResourcesPartComponent
-  extends ModelEditorComponentBase<SiteResourcesPart>
-  implements OnInit
-{
+export class SiteResourcesPartComponent extends ModelEditorComponentBase<SiteResourcesPart> {
+  private readonly _dialogService = inject(DialogService);
+
   public readonly editedIndex = signal<number>(-1);
   public readonly edited = signal<SiteResource | undefined>(undefined);
 
   // site-resource-types
-  public readonly typeEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly typeEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['site-resource-types']?.entries,
+  );
   // site-resource-tags
-  public readonly tagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly tagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['site-resource-tags']?.entries,
+  );
   // site-resource-features
-  public readonly featureEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly featureEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['site-resource-features']?.entries,
+  );
   // asserted-historical-date-tags
-  public readonly dateTagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly dateTagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['asserted-historical-date-tags']?.entries,
+  );
   // doc-reference-types
-  public readonly refTypeEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly refTypeEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['doc-reference-types']?.entries,
+  );
   // doc-reference-tags
-  public readonly refTagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly refTagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['doc-reference-tags']?.entries,
+  );
   // site-resource-count-ids
-  public readonly countIdEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly countIdEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['site-resource-count-ids']?.entries,
+  );
   // site-resource-count-tags
-  public readonly countTagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly countTagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['site-resource-count-tags']?.entries,
+  );
   // geo-location-tags
-  public readonly locTagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly locTagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['geo-location-tags']?.entries,
+  );
   // assertion-tags
-  public readonly assTagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly assTagEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['assertion-tags']?.entries,
+  );
 
   // lookup options depending on role
   public readonly lookupProviderOptions = signal<LookupProviderOptions | undefined>(undefined);
 
-  public entries: FormControl<SiteResource[]>;
+  private readonly _draft = linkedSignal(() => toDraft(this.data()?.value));
+  public readonly form = this.createForm(this._draft, (p) => {
+    // at least 1 entry
+    NgxToolsSignalValidators.strictMinLength(p.entries, 1);
+  });
 
-  constructor(
-    authService: AuthJwtService,
-    formBuilder: FormBuilder,
-    private _dialogService: DialogService,
-  ) {
-    super(authService, formBuilder);
-    // form
-    this.entries = formBuilder.control([], {
-      // at least 1 entry
-      validators: NgxToolsValidators.strictMinLengthValidator(1),
-      nonNullable: true,
-    });
-    // settings
+  constructor() {
+    super();
     this.initSettings<SiteResourcesPartSettings>(SITE_RESOURCES_PART_TYPEID, (settings) => {
       this.lookupProviderOptions.set(settings?.lookupProviderOptions || undefined);
     });
   }
 
-  public override ngOnInit(): void {
-    super.ngOnInit();
-  }
-
-  protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {
-    return formBuilder.group({
-      entries: this.entries,
-    });
-  }
-
-  private updateThesauri(thesauri: ThesauriSet): void {
-    let key = 'site-resource-types';
-    if (this.hasThesaurus(key)) {
-      this.typeEntries.set(thesauri[key].entries);
-    } else {
-      this.typeEntries.set(undefined);
-    }
-    key = 'site-resource-tags';
-    if (this.hasThesaurus(key)) {
-      this.tagEntries.set(thesauri[key].entries);
-    } else {
-      this.tagEntries.set(undefined);
-    }
-    key = 'site-resource-features';
-    if (this.hasThesaurus(key)) {
-      this.featureEntries.set(thesauri[key].entries);
-    } else {
-      this.featureEntries.set(undefined);
-    }
-    key = 'asserted-historical-date-tags';
-    if (this.hasThesaurus(key)) {
-      this.dateTagEntries.set(thesauri[key].entries);
-    } else {
-      this.dateTagEntries.set(undefined);
-    }
-    key = 'doc-reference-types';
-    if (this.hasThesaurus(key)) {
-      this.refTypeEntries.set(thesauri[key].entries);
-    } else {
-      this.refTypeEntries.set(undefined);
-    }
-    key = 'doc-reference-tags';
-    if (this.hasThesaurus(key)) {
-      this.refTagEntries.set(thesauri[key].entries);
-    } else {
-      this.refTagEntries.set(undefined);
-    }
-    key = 'site-resource-count-ids';
-    if (this.hasThesaurus(key)) {
-      this.countIdEntries.set(thesauri[key].entries);
-    } else {
-      this.countIdEntries.set(undefined);
-    }
-    key = 'site-resource-count-tags';
-    if (this.hasThesaurus(key)) {
-      this.countTagEntries.set(thesauri[key].entries);
-    } else {
-      this.countTagEntries.set(undefined);
-    }
-    key = 'geo-location-tags';
-    if (this.hasThesaurus(key)) {
-      this.locTagEntries.set(thesauri[key].entries);
-    } else {
-      this.locTagEntries.set(undefined);
-    }
-    key = 'assertion-tags';
-    if (this.hasThesaurus(key)) {
-      this.assTagEntries.set(thesauri[key].entries);
-    } else {
-      this.assTagEntries.set(undefined);
-    }
-  }
-
-  private updateForm(part?: SiteResourcesPart | null): void {
-    if (!part) {
-      this.form.reset();
-      return;
-    }
-    this.entries.setValue(part.resources || []);
-    this.form.markAsPristine();
-  }
-
-  protected override onDataSet(data?: EditedObject<SiteResourcesPart>): void {
-    // thesauri
-    if (data?.thesauri) {
-      this.updateThesauri(data.thesauri);
-    }
-
-    // form
-    this.updateForm(data?.value);
-  }
-
   protected getValue(): SiteResourcesPart {
-    let part = this.getEditedPart(SITE_RESOURCES_PART_TYPEID) as SiteResourcesPart;
-    part.resources = this.entries.value || [];
+    const part = this.getEditedPart(SITE_RESOURCES_PART_TYPEID) as SiteResourcesPart;
+    part.resources = copyFormValue(this._draft().entries);
     return part;
+  }
+
+  /**
+   * Set the entries as the result of a user action.
+   */
+  private setEntries(entries: SiteResource[]): void {
+    this.form.entries().value.set(entries);
+    this.form.entries().markAsDirty();
   }
 
   public addResource(): void {
     const resource: SiteResource = {
-      type: this.typeEntries()?.[0]?.id || ''
+      type: this.typeEntries()?.[0]?.id || '',
     };
     this.editResource(resource, -1);
   }
 
   public editResource(entry: SiteResource, index: number): void {
     this.editedIndex.set(index);
+    // structuredClone also drops the form's Symbol tag
     this.edited.set(structuredClone(entry));
   }
 
@@ -233,15 +169,13 @@ export class SiteResourcesPartComponent
   }
 
   public saveResource(entry: SiteResource): void {
-    const entries = [...this.entries.value];
+    const entries = [...this.form.entries().value()];
     if (this.editedIndex() === -1) {
-      entries.push(entry);
+      entries.push(copyFormValue(entry));
     } else {
-      entries.splice(this.editedIndex(), 1, entry);
+      entries.splice(this.editedIndex(), 1, copyFormValue(entry));
     }
-    this.entries.setValue(entries);
-    this.entries.markAsDirty();
-    this.entries.updateValueAndValidity();
+    this.setEntries(entries);
     this.closeResource();
   }
 
@@ -256,11 +190,12 @@ export class SiteResourcesPartComponent
             // keep the edited index in sync with the shifted entries
             this.editedIndex.update((i) => i - 1);
           }
-          const entries = [...this.entries.value];
-          entries.splice(index, 1);
-          this.entries.setValue(entries);
-          this.entries.markAsDirty();
-          this.entries.updateValueAndValidity();
+          this.setEntries(
+            this.form
+              .entries()
+              .value()
+              .filter((_, i) => i !== index),
+          );
         }
       });
   }
@@ -280,27 +215,23 @@ export class SiteResourcesPartComponent
     if (index < 1) {
       return;
     }
-    const entry = this.entries.value[index];
-    const entries = [...this.entries.value];
+    const entries = [...this.form.entries().value()];
+    const entry = entries[index];
     entries.splice(index, 1);
     entries.splice(index - 1, 0, entry);
     this.swapEditedIndex(index, index - 1);
-    this.entries.setValue(entries);
-    this.entries.markAsDirty();
-    this.entries.updateValueAndValidity();
+    this.setEntries(entries);
   }
 
   public moveResourceDown(index: number): void {
-    if (index + 1 >= this.entries.value.length) {
+    if (index + 1 >= this.form.entries().value().length) {
       return;
     }
-    const entry = this.entries.value[index];
-    const entries = [...this.entries.value];
+    const entries = [...this.form.entries().value()];
+    const entry = entries[index];
     entries.splice(index, 1);
     entries.splice(index + 1, 0, entry);
     this.swapEditedIndex(index, index + 1);
-    this.entries.setValue(entries);
-    this.entries.markAsDirty();
-    this.entries.updateValueAndValidity();
+    this.setEntries(entries);
   }
 }

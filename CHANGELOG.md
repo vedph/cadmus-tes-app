@@ -1,5 +1,10 @@
 # History
 
+- 2026-10-09: ⚠️ migrated `@myrmidon/cadmus-part-tes-site-resources` to signal forms, after updating the Cadmus core packages to v20 (see `signal-forms-migration.md`).
+  - `SiteResourcesPartComponent` follows the v20 `ModelEditorComponentBase` contract: `entries` is now `form.entries`, thesauri are computed signals, and there is no `<form>` (save through the save button).
+  - `SiteResourceEditor` renders no `<form>`. Enter in its text inputs still accepts the resource when the accept button is enabled. Child editors echoing their value (e.g. the historical date) no longer make it dirty, and reverting an edit makes it pristine again. The type input is now capped at 100 characters by the browser.
+  - library peers bumped to `cadmus-core`/`cadmus-state` 20 and `cadmus-ui` 20.0.1.
+  - 🛠️ added `pnpm build:libs [lib...]` (`scripts/build-libs.mjs`, dependency-ordered) and `scripts/check-local-libs.js`, which fails `start`/`build`/`build:libs` if a local library exists in `node_modules`.
 - 2026-10-09: added full component tests (Vitest + Angular Testing Library) for `@myrmidon/cadmus-part-tes-site-resources` and route tests for `@myrmidon/cadmus-part-tes-pg`. Fixes found while testing:
   - `SiteResourceEditor`:
     - accepting a resource also saved the whole part: the editor form is nested in the part form, and its `submit` event bubbled up to the part's `save()`. The editor now stops the event propagation (same pattern used in the bricks).

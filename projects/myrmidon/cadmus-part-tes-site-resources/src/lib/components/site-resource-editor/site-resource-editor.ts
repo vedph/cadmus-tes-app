@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, model, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  model,
+  output,
+  untracked,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -146,7 +154,15 @@ export class SiteResourceEditor {
       this.eid.setValue(data.eid ?? null);
       this.type.setValue(data.type);
       this.tag.setValue(data.tag ?? null);
-      this.features.setValue(this.mapIdsToEntries(data.features ?? [], undefined));
+      // resolve feature IDs into their thesaurus entries (if any) so that
+      // the picker can display their labels; untracked so that a change in
+      // the entries does not reset the form being edited
+      this.features.setValue(
+        this.mapIdsToEntries(
+          data.features ?? [],
+          untracked(() => this.featureEntries()),
+        ),
+      );
       this.hasLocation.setValue(!!data.location);
       this.location.setValue(data.location ?? null);
       this.hasDate.setValue(!!data.date);
@@ -158,9 +174,9 @@ export class SiteResourceEditor {
 
   private getData(): SiteResource {
     return {
-      eid: this.eid.value ?? undefined,
+      eid: this.eid.value?.trim() || undefined,
       type: this.type.value,
-      tag: this.tag.value ?? undefined,
+      tag: this.tag.value?.trim() || undefined,
       features: this.features.value.length ? this.features.value.map((e) => e.id) : undefined,
       location: this.hasLocation.value ? (this.location.value ?? undefined) : undefined,
       date: this.hasDate.value ? (this.date.value ?? undefined) : undefined,
@@ -190,6 +206,20 @@ export class SiteResourceEditor {
     this.counts.setValue(counts);
     this.counts.markAsDirty();
     this.counts.updateValueAndValidity();
+  }
+
+  /**
+   * Handle the form submit event. As this form is nested inside the part
+   * editor form, the event must not propagate to the parent form, which
+   * would otherwise save the whole part.
+   * @param event The submit event.
+   */
+  public onSubmit(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.save();
   }
 
   public cancel(): void {

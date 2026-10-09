@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="save()">
+<form [formGroup]="form" (submit)="onSubmit($event)">
   <div class="form-row">
     <!-- type (bound) -->
     @if (typeEntries()?.length) {
@@ -21,7 +21,7 @@
         @if ($any(type).errors?.required && (type.dirty || type.touched)) {
           <mat-error>type required</mat-error>
         }
-        @if ($any(type).errors?.maxLength && (type.dirty || type.touched)) {
+        @if ($any(type).errors?.maxlength && (type.dirty || type.touched)) {
           <mat-error>type too long</mat-error>
         }
       </mat-form-field>
@@ -48,7 +48,7 @@
         @if ($any(tag).errors?.required && (tag.dirty || tag.touched)) {
           <mat-error>tag required</mat-error>
         }
-        @if ($any(tag).errors?.maxLength && (tag.dirty || tag.touched)) {
+        @if ($any(tag).errors?.maxlength && (tag.dirty || tag.touched)) {
           <mat-error>tag too long</mat-error>
         }
       </mat-form-field>
@@ -61,7 +61,7 @@
       @if ($any(eid).errors?.required && (eid.dirty || eid.touched)) {
         <mat-error>EID required</mat-error>
       }
-      @if ($any(eid).errors?.maxLength && (eid.dirty || eid.touched)) {
+      @if ($any(eid).errors?.maxlength && (eid.dirty || eid.touched)) {
         <mat-error>EID too long</mat-error>
       }
     </mat-form-field>
@@ -137,13 +137,20 @@
 
   <!-- buttons -->
   <div>
-    <button type="button" mat-icon-button matTooltip="Discard changes" (click)="cancel()">
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Discard changes"
+      aria-label="Discard changes"
+      (click)="cancel()"
+    >
       <mat-icon class="mat-warn">clear</mat-icon>
     </button>
     <button
       type="submit"
       mat-icon-button
       matTooltip="Accept changes"
+      aria-label="Accept changes"
       [disabled]="form.invalid || form.pristine"
     >
       <mat-icon class="mat-primary">check_circle</mat-icon>

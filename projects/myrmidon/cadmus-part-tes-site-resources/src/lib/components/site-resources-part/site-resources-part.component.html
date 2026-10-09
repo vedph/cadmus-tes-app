@@ -34,13 +34,14 @@
               let first = $first;
               let last = $last
             ) {
-              <tr [class.selected]="entry === edited()">
+              <tr [class.selected]="i === editedIndex()">
                 <td class="fit-width">
                   <button
                     type="button"
                     mat-icon-button
                     color="primary"
                     matTooltip="Edit this resource"
+                    aria-label="Edit this resource"
                     (click)="editResource(entry, i)"
                   >
                     <mat-icon class="mat-primary">edit</mat-icon>
@@ -49,6 +50,7 @@
                     type="button"
                     mat-icon-button
                     matTooltip="Move this resource up"
+                    aria-label="Move this resource up"
                     [disabled]="first"
                     (click)="moveResourceUp(i)"
                   >
@@ -58,6 +60,7 @@
                     type="button"
                     mat-icon-button
                     matTooltip="Move this resource down"
+                    aria-label="Move this resource down"
                     [disabled]="last"
                     (click)="moveResourceDown(i)"
                   >
@@ -68,14 +71,15 @@
                     mat-icon-button
                     color="warn"
                     matTooltip="Delete this resource"
+                    aria-label="Delete this resource"
                     (click)="deleteResource(i)"
                   >
                     <mat-icon class="mat-warn">remove_circle</mat-icon>
                   </button>
                 </td>
                 <td>{{ entry.eid }}</td>
-                <td>{{ entry.type | flatLookup: 'id' : 'value' }}</td>
-                <td>{{ entry.tag | flatLookup: 'id' : 'value' }}</td>
+                <td>{{ entry.type | flatLookup: typeEntries() : 'id' : 'value' }}</td>
+                <td>{{ entry.tag | flatLookup: tagEntries() : 'id' : 'value' }}</td>
                 <td>{{ entry.location?.value?.label }}</td>
                 <td>{{ entry.date | historicalDate }}</td>
               </tr>
@@ -102,6 +106,7 @@
               [countIdEntries]="countIdEntries()"
               [countTagEntries]="countTagEntries()"
               [locTagEntries]="locTagEntries()"
+              [assTagEntries]="assTagEntries()"
               [lookupProviderOptions]="lookupProviderOptions()"
             />
           </mat-expansion-panel>

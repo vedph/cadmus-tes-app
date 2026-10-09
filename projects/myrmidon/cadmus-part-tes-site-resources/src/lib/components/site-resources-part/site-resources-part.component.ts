@@ -252,6 +252,9 @@ export class SiteResourcesPartComponent
         if (yes) {
           if (this.editedIndex() === index) {
             this.closeResource();
+          } else if (this.editedIndex() > index) {
+            // keep the edited index in sync with the shifted entries
+            this.editedIndex.update((i) => i - 1);
           }
           const entries = [...this.entries.value];
           entries.splice(index, 1);
@@ -262,6 +265,17 @@ export class SiteResourcesPartComponent
       });
   }
 
+  /**
+   * Keep the edited index in sync when two adjacent entries are swapped.
+   */
+  private swapEditedIndex(a: number, b: number): void {
+    if (this.editedIndex() === a) {
+      this.editedIndex.set(b);
+    } else if (this.editedIndex() === b) {
+      this.editedIndex.set(a);
+    }
+  }
+
   public moveResourceUp(index: number): void {
     if (index < 1) {
       return;
@@ -270,6 +284,7 @@ export class SiteResourcesPartComponent
     const entries = [...this.entries.value];
     entries.splice(index, 1);
     entries.splice(index - 1, 0, entry);
+    this.swapEditedIndex(index, index - 1);
     this.entries.setValue(entries);
     this.entries.markAsDirty();
     this.entries.updateValueAndValidity();
@@ -283,6 +298,7 @@ export class SiteResourcesPartComponent
     const entries = [...this.entries.value];
     entries.splice(index, 1);
     entries.splice(index + 1, 0, entry);
+    this.swapEditedIndex(index, index + 1);
     this.entries.setValue(entries);
     this.entries.markAsDirty();
     this.entries.updateValueAndValidity();

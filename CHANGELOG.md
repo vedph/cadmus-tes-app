@@ -1,5 +1,19 @@
 # History
 
+- 2026-10-09: added full component tests (Vitest + Angular Testing Library) for `@myrmidon/cadmus-part-tes-site-resources` and route tests for `@myrmidon/cadmus-part-tes-pg`. Fixes found while testing:
+  - `SiteResourceEditor`:
+    - accepting a resource also saved the whole part: the editor form is nested in the part form, and its `submit` event bubbled up to the part's `save()`. The editor now stops the event propagation (same pattern used in the bricks).
+    - the "too long" errors were never shown because the template checked `errors.maxLength` instead of Angular's `errors.maxlength` key.
+    - existing features were displayed with their IDs instead of their thesaurus labels, because the IDs were never resolved against `featureEntries`.
+    - a blank EID or tag was saved as an empty string rather than omitted.
+    - added `aria-label` to the icon-only buttons (AXE: buttons must have an accessible name).
+  - `SiteResourcesPartComponent`:
+    - type and tag columns did not show thesaurus labels: `flatLookup` was given `'id'` as its map instead of the thesaurus entries.
+    - the row being edited was never highlighted, because it was compared by reference with a deep copy of it.
+    - `assTagEntries` (`assertion-tags` thesaurus) was not passed to the resource editor.
+    - moving or deleting resources while one was being edited left the edited index stale, so that saving the edited resource replaced the wrong one.
+    - added `aria-label` to the icon-only buttons.
+  - test infrastructure: added `@testing-library/angular`, `@testing-library/dom`, `@testing-library/user-event` and `@vitest/coverage-v8`. Added `zone.js` as a dev dependency and set the libraries test `buildTarget` to the (zoneless) app build: for library targets the Angular unit test builder otherwise tries to load `zone.js`, which was resolvable only via a transitive pnpm dependency and failed to import. Tests remain zoneless. Run with e.g. `ng test @myrmidon/cadmus-part-tes-site-resources --watch=false` (add `--coverage` for a coverage report).
 - 2026-10-06: updated Angular and packages (still using Reactive forms).
 - 2026-09-25: updated Angular and packages.
 - 2026-07-27: ⚠️ upgraded `maplibre-gl` 5→6 and `@maplibre/ngx-maplibre-gl` 21→22. MapLibre v6 dropped its UMD/CommonJS build and ships ESM-only, which breaks the worker script lookup under Angular's esbuild bundler (`import.meta.url` resolves to the bundled chunk, not to `maplibre-gl.mjs`, so the default worker URL 404s and any map using a real source silently hangs instead of firing `load`/`idle`). To fix, repeat in any workspace using MapLibre:

@@ -105,7 +105,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.spec.json"
+            "tsConfig": "projects/myrmidon/cadmus-part-tes-site-resources/tsconfig.spec.json",
+            "buildTarget": "cadmus-tes-app:build:development"
           }
         }
       }
@@ -131,7 +132,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/myrmidon/cadmus-part-tes-pg/tsconfig.spec.json"
+            "tsConfig": "projects/myrmidon/cadmus-part-tes-pg/tsconfig.spec.json",
+            "buildTarget": "cadmus-tes-app:build:development"
           }
         }
       }

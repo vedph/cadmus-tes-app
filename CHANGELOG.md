@@ -1,5 +1,6 @@
 # History
 
+- 2026-10-09: after updating Maplibre, provide the worker with `provideMaplibreWorker('assets/maplibre-gl/maplibre-gl-worker.mjs')` in `app.config.ts` rather than running the worker from `main.ts`.
 - 2026-10-09: ⚠️ migrated `@myrmidon/cadmus-part-tes-site-resources` to signal forms, after updating the Cadmus core packages to v20 (see `signal-forms-migration.md`).
   - `SiteResourcesPartComponent` follows the v20 `ModelEditorComponentBase` contract: `entries` is now `form.entries`, thesauri are computed signals, and there is no `<form>` (save through the save button).
   - `SiteResourceEditor` renders no `<form>`. Enter in its text inputs still accepts the resource when the accept button is enabled. Child editors echoing their value (e.g. the historical date) no longer make it dirty, and reverting an edit makes it pristine again. The type input is now capped at 100 characters by the browser.

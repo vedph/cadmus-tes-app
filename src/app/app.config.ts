@@ -11,6 +11,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 
 import { DefaultMonacoLoader, NGX_MONACO_LOADER_PROVIDER } from '@jean-merelis/ngx-monaco-editor';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { provideMaplibreWorker } from '@maplibre/ngx-maplibre-gl/config';
 
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
 import {
@@ -47,6 +48,10 @@ export const appConfig: ApplicationConfig = {
         echarts: () => import('echarts'),
       }),
     ),
+    // maplibre-gl v6 is ESM only: its worker (and shared chunk) are copied as
+    // static assets (see angular.json); the URL is resolved against baseURI
+    // and applied via setWorkerUrl when the first map is created
+    provideMaplibreWorker('assets/maplibre-gl/maplibre-gl-worker.mjs'),
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
     // inject like: @Inject('partEditorKeys') partEditorKeys: PartEditorKeys

@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tbody tr:nth-child(odd) {
+  background-color: var(--mat-sys-surface-container);
+}
+th {
+  text-align: left;
+  font-weight: normal;
+  color: var(--mat-sys-on-surface-variant);
+}
+tbody tr:hover {
+  background-color: var(--mat-sys-surface-container-high);
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
+tbody tr.selected {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+}
+fieldset {
+  border: 1px solid var(--mat-sys-on-surface-variant);
+  border-radius: 6px;
+  padding: 6px;
+}
+.nr {
+  color: var(--mat-sys-on-surface-variant);
+  background-color: var(--mat-sys-surface-container);
+  border: 1px solid var(--mat-sys-on-surface-variant);
+  border-radius: 4px;
+  padding: 0 2px;
+}

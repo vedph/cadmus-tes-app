@@ -15,6 +15,7 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { DecoratedCount } from '@myrmidon/cadmus-refs-decorated-counts';
 import { AssertedHistoricalDate } from '@myrmidon/cadmus-refs-historical-date';
 import { AssertedLocation } from '@myrmidon/cadmus-part-geo-asserted-locations';
+import { DocReference } from '@myrmidon/cadmus-refs-doc-references';
 
 import { SiteResource } from '../../site-resources-part';
 import { SiteResourceEditor } from './site-resource-editor';
@@ -25,8 +26,9 @@ import { SiteResourceEditor } from './site-resource-editor';
 const LOCATION: AssertedLocation = {
   value: { label: 'Quarry A', latitude: 41.9, longitude: 12.5 },
 };
-const DATE: AssertedHistoricalDate = { a: { value: 200 } };
+const DATES: AssertedHistoricalDate[] = [{ a: { value: 200 } }, { a: { value: 300 } }];
 const COUNTS: DecoratedCount[] = [{ id: 'blocks', value: 3 }];
+const REFERENCES: DocReference[] = [{ citation: 'Paus. 1.19.6' }];
 
 @Component({
   selector: 'cadmus-thesaurus-entries-picker',
@@ -75,18 +77,47 @@ class AssertedLocationStub {
 }
 
 @Component({
-  selector: 'cadmus-refs-asserted-historical-date',
-  template: `<p>date: {{ date()?.a?.value }}</p>
-    <button type="button" (click)="dateChange.emit(value)">set date</button>`,
+  selector: 'cadmus-asserted-historical-dates-editor',
+  template: `<p>dates: {{ datesText() }}</p>
+    <p>date tags: {{ tagEntries()?.length ?? 0 }}</p>
+    <button type="button" (click)="datesChange.emit(value)">set dates</button>
+    <button type="button" (click)="datesChange.emit([])">clear dates</button>
+    <button type="button" (click)="echo()">echo dates</button>`,
 })
-class AssertedHistoricalDateStub {
-  public readonly value = DATE;
-  public readonly date = input<AssertedHistoricalDate>();
+class AssertedHistoricalDatesEditorStub {
+  public readonly value = DATES;
+  public readonly dates = input<AssertedHistoricalDate[]>([]);
   public readonly tagEntries = input<ThesaurusEntry[]>();
   public readonly assertionTagEntries = input<ThesaurusEntry[]>();
   public readonly docReferenceTypeEntries = input<ThesaurusEntry[]>();
   public readonly docReferenceTagEntries = input<ThesaurusEntry[]>();
-  public readonly dateChange = output<AssertedHistoricalDate>();
+  public readonly datesChange = output<AssertedHistoricalDate[]>();
+
+  public datesText(): string {
+    return this.dates()
+      .map((d) => d.a.value)
+      .join(', ');
+  }
+
+  // emit a copy of the received dates
+  public echo(): void {
+    this.datesChange.emit(structuredClone(this.dates()));
+  }
+}
+
+@Component({
+  selector: 'cadmus-refs-doc-references',
+  template: `<p>references: {{ references()?.length ?? 0 }}</p>
+    <p>reference types: {{ typeEntries()?.length ?? 0 }}</p>
+    <button type="button" (click)="referencesChange.emit(value)">set references</button>
+    <button type="button" (click)="referencesChange.emit([])">clear references</button>`,
+})
+class DocReferencesStub {
+  public readonly value = REFERENCES;
+  public readonly references = input<DocReference[]>([]);
+  public readonly typeEntries = input<ThesaurusEntry[]>();
+  public readonly tagEntries = input<ThesaurusEntry[]>();
+  public readonly referencesChange = output<DocReference[]>();
 }
 
 @Component({
@@ -114,8 +145,9 @@ const COMPONENT_IMPORTS = [
   MatTooltipModule,
   ThesaurusEntriesPickerStub,
   AssertedLocationStub,
-  AssertedHistoricalDateStub,
+  AssertedHistoricalDatesEditorStub,
   DecoratedCountsStub,
+  DocReferencesStub,
 ];
 
 const PROVIDERS = [{ provide: MATERIAL_ANIMATIONS, useValue: { animationsDisabled: true } }];
@@ -198,8 +230,10 @@ describe('SiteResourceEditor', () => {
         tag: 'modern',
         features: undefined,
         location: undefined,
-        date: undefined,
+        dates: undefined,
         counts: undefined,
+        references: undefined,
+        note: undefined,
       });
       // pristine again after save
       expect(acceptButton().disabled).toBe(true);
@@ -431,41 +465,156 @@ describe('SiteResourceEditor', () => {
     });
   });
 
-  describe('date', () => {
-    it('hides the date editor until checked', async () => {
-      const { user } = await setup({ resource: { type: 'quarry' } });
-      expect(screen.queryByRole('button', { name: 'set date' })).toBeNull();
-
-      await user.click(screen.getByRole('checkbox', { name: 'date' }));
-
-      expect(screen.getByRole('button', { name: 'set date' })).toBeTruthy();
+  describe('dates', () => {
+    it('always shows the dates editor, empty for a new resource', async () => {
+      await setup({ resource: { type: 'quarry' } });
+      expect(screen.getByRole('group', { name: 'dates' })).toBeTruthy();
+      expect(screen.getByText('dates:')).toBeTruthy();
     });
 
-    it('shows the existing date', async () => {
-      await setup({ resource: { type: 'quarry', date: DATE } });
-      expect((screen.getByRole('checkbox', { name: 'date' }) as HTMLInputElement).checked).toBe(
-        true,
-      );
-      expect(screen.getByText('date: 200')).toBeTruthy();
+    it('shows the existing dates', async () => {
+      await setup({ resource: { type: 'quarry', dates: DATES } });
+      expect(screen.getByText('dates: 200, 300')).toBeTruthy();
     });
 
-    it('saves the edited date', async () => {
+    it('passes the date tags to the dates editor', async () => {
+      await setup({
+        resource: { type: 'quarry' },
+        dateTagEntries: [{ id: 't', value: 't' }],
+      });
+      expect(screen.getByText('date tags: 1')).toBeTruthy();
+    });
+
+    it('saves the edited dates', async () => {
       const { user, resourceChange } = await setup({ resource: { type: 'quarry' } });
 
-      await user.click(screen.getByRole('checkbox', { name: 'date' }));
-      await user.click(screen.getByRole('button', { name: 'set date' }));
+      await user.click(screen.getByRole('button', { name: 'set dates' }));
+      expect(acceptButton().disabled).toBe(false);
       await user.click(acceptButton());
 
-      expect((resourceChange.mock.calls[0][0] as SiteResource).date).toEqual(DATE);
+      expect((resourceChange.mock.calls[0][0] as SiteResource).dates).toEqual(DATES);
     });
 
-    it('drops the date when unchecked', async () => {
-      const { user, resourceChange } = await setup({ resource: { type: 'quarry', date: DATE } });
+    it('saves no dates when all were removed', async () => {
+      const { user, resourceChange } = await setup({ resource: { type: 'quarry', dates: DATES } });
 
-      await user.click(screen.getByRole('checkbox', { name: 'date' }));
+      await user.click(screen.getByRole('button', { name: 'clear dates' }));
       await user.click(acceptButton());
 
-      expect((resourceChange.mock.calls[0][0] as SiteResource).date).toBeUndefined();
+      expect((resourceChange.mock.calls[0][0] as SiteResource).dates).toBeUndefined();
+    });
+
+    it('stays pristine when the dates editor echoes its dates', async () => {
+      const { user } = await setup({ resource: { type: 'quarry', dates: DATES } });
+
+      await user.click(screen.getByRole('button', { name: 'echo dates' }));
+
+      expect(acceptButton().disabled).toBe(true);
+    });
+  });
+
+  describe('references', () => {
+    it('always shows the references editor', async () => {
+      await setup({ resource: { type: 'quarry' } });
+      expect(screen.getByRole('group', { name: 'references' })).toBeTruthy();
+      expect(screen.getByText('references: 0')).toBeTruthy();
+    });
+
+    it('shows the existing references with their thesauri', async () => {
+      await setup({
+        resource: { type: 'quarry', references: REFERENCES },
+        refTypeEntries: [{ id: 'book', value: 'book' }],
+      });
+      expect(screen.getByText('references: 1')).toBeTruthy();
+      expect(screen.getByText('reference types: 1')).toBeTruthy();
+    });
+
+    it('saves the edited references', async () => {
+      const { user, resourceChange } = await setup({ resource: { type: 'quarry' } });
+
+      await user.click(screen.getByRole('button', { name: 'set references' }));
+      await user.click(acceptButton());
+
+      expect((resourceChange.mock.calls[0][0] as SiteResource).references).toEqual(REFERENCES);
+    });
+
+    it('saves no references when all were removed', async () => {
+      const { user, resourceChange } = await setup({
+        resource: { type: 'quarry', references: REFERENCES },
+      });
+
+      await user.click(screen.getByRole('button', { name: 'clear references' }));
+      await user.click(acceptButton());
+
+      expect((resourceChange.mock.calls[0][0] as SiteResource).references).toBeUndefined();
+    });
+
+    it('stays pristine when the references editor emits the same references', async () => {
+      const { user } = await setup({ resource: { type: 'quarry', references: REFERENCES } });
+
+      await user.click(screen.getByRole('button', { name: 'set references' }));
+
+      expect(acceptButton().disabled).toBe(true);
+    });
+  });
+
+  describe('note', () => {
+    it('populates the note from the resource', async () => {
+      await setup({ resource: { type: 'quarry', note: 'a note' } });
+      expect(screen.getByRole('textbox', { name: 'note' })).toHaveProperty('value', 'a note');
+    });
+
+    it('saves the edited note, keeping its new lines', async () => {
+      const { user, resourceChange } = await setup({ resource: { type: 'quarry' } });
+
+      // Enter in the note adds a line rather than saving
+      await user.type(screen.getByRole('textbox', { name: 'note' }), 'line 1{Enter}line 2');
+      expect(resourceChange).not.toHaveBeenCalled();
+      await user.click(acceptButton());
+
+      expect((resourceChange.mock.calls[0][0] as SiteResource).note).toBe('line 1\nline 2');
+    });
+
+    it('saves a blank note as undefined', async () => {
+      const { user, resourceChange } = await setup({ resource: { type: 'quarry', note: 'x' } });
+      const note = screen.getByRole('textbox', { name: 'note' });
+
+      await user.clear(note);
+      await user.type(note, '  ');
+      await user.click(acceptButton());
+
+      expect((resourceChange.mock.calls[0][0] as SiteResource).note).toBeUndefined();
+    });
+
+    it('shows the note length', async () => {
+      await setup({ resource: { type: 'quarry', note: 'abc' } });
+      expect(screen.getByText('3/5000')).toBeTruthy();
+    });
+
+    it('truncates a pasted note to its maximum length', async () => {
+      const { user, resourceChange } = await setup({ resource: { type: 'quarry' } });
+      const note = screen.getByRole('textbox', { name: 'note' }) as HTMLTextAreaElement;
+
+      // the maxLength rule sets the native maxlength attribute
+      await user.click(note);
+      await user.paste('x'.repeat(5010));
+      expect(note.value.length).toBe(5000);
+      await user.click(acceptButton());
+
+      expect((resourceChange.mock.calls[0][0] as SiteResource).note?.length).toBe(5000);
+    });
+
+    it('signals a note too long', async () => {
+      const { user, resourceChange } = await setup({
+        resource: { type: 'quarry', note: 'x'.repeat(5001) },
+      });
+
+      await user.click(screen.getByRole('textbox', { name: 'note' }));
+      await user.tab();
+
+      expect(screen.getByText('note too long')).toBeTruthy();
+      expect(acceptButton().disabled).toBe(true);
+      expect(resourceChange).not.toHaveBeenCalled();
     });
   });
 

@@ -51,7 +51,7 @@ const RESOURCES: SiteResource[] = [
     type: 'quarry',
     tag: 'ancient',
     location: { value: { label: 'Mount Pentelicus', latitude: 38.1, longitude: 23.9 } },
-    date: { a: { value: 200 } },
+    dates: [{ a: { value: 200 } }, { a: { value: 300 } }],
   },
   { eid: 'r2', type: 'mine' },
   { eid: 'r3', type: 'other', tag: 'unlisted' },
@@ -189,8 +189,10 @@ describe('SiteResourcesPartComponent', () => {
       const rows = getRows();
       expect(rows.length).toBe(3);
       expect(rows[0].slice(0, 4)).toEqual(['r1', 'Quarry', 'Ancient', 'Mount Pentelicus']);
-      expect(rows[0][4]).toMatch(/200/);
+      // all the dates are listed, in their order
+      expect(rows[0][4]).toMatch(/200.*;.*300/s);
       expect(rows[1].slice(0, 3)).toEqual(['r2', 'Mine', '']);
+      expect(rows[1][4]).toBe('');
       // IDs not found in thesauri are shown as they are
       expect(rows[2].slice(0, 3)).toEqual(['r3', 'other', 'unlisted']);
     });

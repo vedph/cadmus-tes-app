@@ -1,0 +1,113 @@
+<div>
+  <button type="button" mat-stroked-button class="mat-primary" (click)="addDate()">
+    <mat-icon>add_circle</mat-icon> date
+  </button>
+</div>
+
+@if (dates().length) {
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>date</th>
+        <th>tag</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (
+        date of dates();
+        track $index;
+        let i = $index;
+        let first = $first;
+        let last = $last
+      ) {
+        <tr [class.selected]="i === editedIndex()">
+          <td class="fit-width">
+            <span class="nr">{{ i + 1 }}.</span>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Edit this date"
+              aria-label="Edit this date"
+              (click)="editDate(date, i)"
+            >
+              <mat-icon class="mat-primary">edit</mat-icon>
+            </button>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Move this date up"
+              aria-label="Move this date up"
+              [disabled]="first"
+              (click)="moveDateUp(i)"
+            >
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Move this date down"
+              aria-label="Move this date down"
+              [disabled]="last"
+              (click)="moveDateDown(i)"
+            >
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Delete this date"
+              aria-label="Delete this date"
+              (click)="deleteDate(i)"
+            >
+              <mat-icon class="mat-warn">remove_circle</mat-icon>
+            </button>
+          </td>
+          <td>{{ date | historicalDate }}</td>
+          <td>{{ date.tag | flatLookup: tagEntries() : 'id' : 'value' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+<!-- the date editor saves at each change: accept to put it into the list -->
+@if (edited()) {
+  <fieldset>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          date #{{ editedIndex() > -1 ? editedIndex() + 1 : 'new' }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <cadmus-refs-asserted-historical-date
+        [date]="edited()"
+        [tagEntries]="tagEntries()"
+        [assertionTagEntries]="assertionTagEntries()"
+        [docReferenceTypeEntries]="docReferenceTypeEntries()"
+        [docReferenceTagEntries]="docReferenceTagEntries()"
+        (dateChange)="onEditedChange($event)"
+      />
+      <div>
+        <button
+          type="button"
+          mat-icon-button
+          matTooltip="Discard date changes"
+          aria-label="Discard date changes"
+          (click)="closeDate()"
+        >
+          <mat-icon class="mat-warn">clear</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          matTooltip="Accept date changes"
+          aria-label="Accept date changes"
+          (click)="saveDate()"
+        >
+          <mat-icon class="mat-primary">check_circle</mat-icon>
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </fieldset>
+}

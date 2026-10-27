@@ -23,10 +23,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { copyFormValue, isImplicitSubmission, setFieldFromChild } from '@myrmidon/cadmus-ui';
 import { DecoratedCount, DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
-import {
-  AssertedHistoricalDate,
-  AssertedHistoricalDateComponent,
-} from '@myrmidon/cadmus-refs-historical-date';
+import { AssertedHistoricalDate } from '@myrmidon/cadmus-refs-historical-date';
+import { DocReference, DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
 import {
   AssertedLocation,
   AssertedLocationComponent,
@@ -35,6 +33,7 @@ import { LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
 import { ThesaurusEntriesPickerComponent } from '@myrmidon/cadmus-thesaurus-store';
 
 import { SiteResource } from '../../site-resources-part';
+import { AssertedHistoricalDatesEditor } from '../asserted-historical-dates-editor/asserted-historical-dates-editor';
 
 /**
  * The editable shape behind the form.
@@ -46,9 +45,10 @@ interface SiteResourceControls {
   features: string[];
   hasLocation: boolean;
   location: AssertedLocation | null;
-  hasDate: boolean;
-  date: AssertedHistoricalDate | null;
+  dates: AssertedHistoricalDate[];
   counts: DecoratedCount[];
+  references: DocReference[];
+  note: string;
 }
 
 /**
@@ -62,9 +62,10 @@ function toDraft(resource?: SiteResource | null): SiteResourceControls {
     features: [...(resource?.features || [])],
     hasLocation: !!resource?.location,
     location: copyFormValue(resource?.location || null),
-    hasDate: !!resource?.date,
-    date: copyFormValue(resource?.date || null),
+    dates: copyFormValue(resource?.dates || []),
     counts: copyFormValue(resource?.counts || []),
+    references: copyFormValue(resource?.references || []),
+    note: resource?.note || '',
   };
 }
 
@@ -78,8 +79,10 @@ function toModel(draft: SiteResourceControls): SiteResource {
     tag: draft.tag.trim() || undefined,
     features: draft.features.length ? [...draft.features] : undefined,
     location: draft.hasLocation ? copyFormValue(draft.location || undefined) : undefined,
-    date: draft.hasDate ? copyFormValue(draft.date || undefined) : undefined,
+    dates: draft.dates.length ? copyFormValue(draft.dates) : undefined,
     counts: draft.counts.length ? copyFormValue(draft.counts) : undefined,
+    references: draft.references.length ? copyFormValue(draft.references) : undefined,
+    note: draft.note.trim() || undefined,
   };
 }
 
@@ -100,8 +103,9 @@ function toModel(draft: SiteResourceControls): SiteResource {
     MatTooltipModule,
     ThesaurusEntriesPickerComponent,
     AssertedLocationComponent,
-    AssertedHistoricalDateComponent,
+    AssertedHistoricalDatesEditor,
     DecoratedCountsComponent,
+    DocReferencesComponent,
   ],
   templateUrl: './site-resource-editor.html',
   styleUrl: './site-resource-editor.css',
@@ -157,6 +161,7 @@ export class SiteResourceEditor {
   public readonly form = form(this._draft, (p) => {
     required(p.type);
     maxLength(p.type, 100);
+    maxLength(p.note, 5000);
   });
 
   /**
@@ -201,12 +206,16 @@ export class SiteResourceEditor {
     setFieldFromChild(this.form.location, copyFormValue(location || null));
   }
 
-  public onDateChange(date: AssertedHistoricalDate | undefined): void {
-    setFieldFromChild(this.form.date, copyFormValue(date || null));
+  public onDatesChange(dates: AssertedHistoricalDate[]): void {
+    setFieldFromChild(this.form.dates, copyFormValue(dates || []));
   }
 
   public onCountsChange(counts: DecoratedCount[]): void {
     setFieldFromChild(this.form.counts, copyFormValue(counts || []));
+  }
+
+  public onReferencesChange(references: DocReference[]): void {
+    setFieldFromChild(this.form.references, copyFormValue(references || []));
   }
 
   /**

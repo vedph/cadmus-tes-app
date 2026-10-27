@@ -15,3 +15,6 @@ legend {
 .form-row * {
   flex: 0 0 auto;
 }
+.long-text {
+  width: 100%;
+}

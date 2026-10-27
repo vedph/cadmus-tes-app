@@ -1,5 +1,6 @@
 # History
 
+- 2026-10-27: ⚠️ changes to `SiteResource` schema and editor.
 - 2026-10-24:
   - updated Angular and packages.
   - fixes to reset password page.

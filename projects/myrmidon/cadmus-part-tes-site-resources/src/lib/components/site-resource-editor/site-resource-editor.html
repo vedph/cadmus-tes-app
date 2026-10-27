@@ -87,22 +87,19 @@
     }
   </div>
 
-  <!-- date -->
+  <!-- dates -->
   <div>
-    <mat-checkbox [formField]="form.hasDate">date</mat-checkbox>
-    @if (form.hasDate().value()) {
-      <fieldset>
-        <legend>date</legend>
-        <cadmus-refs-asserted-historical-date
-          [date]="form.date().value() || undefined"
-          [tagEntries]="dateTagEntries()"
-          [assertionTagEntries]="assTagEntries()"
-          [docReferenceTypeEntries]="refTypeEntries()"
-          [docReferenceTagEntries]="refTagEntries()"
-          (dateChange)="onDateChange($event)"
-        />
-      </fieldset>
-    }
+    <fieldset>
+      <legend>dates</legend>
+      <cadmus-asserted-historical-dates-editor
+        [dates]="form.dates().value()"
+        [tagEntries]="dateTagEntries()"
+        [assertionTagEntries]="assTagEntries()"
+        [docReferenceTypeEntries]="refTypeEntries()"
+        [docReferenceTagEntries]="refTagEntries()"
+        (datesChange)="onDatesChange($event)"
+      />
+    </fieldset>
   </div>
 
   <!-- counts -->
@@ -120,6 +117,31 @@
       </fieldset>
     </div>
   }
+
+  <!-- references -->
+  <div>
+    <fieldset>
+      <legend>references</legend>
+      <cadmus-refs-doc-references
+        [references]="form.references().value()"
+        [typeEntries]="refTypeEntries()"
+        [tagEntries]="refTagEntries()"
+        (referencesChange)="onReferencesChange($event)"
+      />
+    </fieldset>
+  </div>
+
+  <!-- note -->
+  <div>
+    <mat-form-field class="long-text">
+      <mat-label>note</mat-label>
+      <textarea matInput rows="3" [formField]="form.note"></textarea>
+      <mat-hint align="end">{{ form.note().value().length }}/5000</mat-hint>
+      @if (form.note().getError('maxLength') && (form.note().dirty() || form.note().touched())) {
+        <mat-error>note too long</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
   <!-- buttons -->
   <div>

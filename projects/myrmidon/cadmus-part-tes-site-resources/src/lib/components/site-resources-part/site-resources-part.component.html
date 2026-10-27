@@ -24,7 +24,7 @@
             <th>type</th>
             <th>tag</th>
             <th>location</th>
-            <th>date</th>
+            <th>dates</th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +82,14 @@
               <td>{{ entry.type | flatLookup: typeEntries() : 'id' : 'value' }}</td>
               <td>{{ entry.tag | flatLookup: tagEntries() : 'id' : 'value' }}</td>
               <td>{{ entry.location?.value?.label }}</td>
-              <td>{{ entry.date | historicalDate }}</td>
+              <td>
+                @for (date of entry.dates; track $index) {
+                  @if (!$first) {
+                    ;
+                  }
+                  {{ date | historicalDate }}
+                }
+              </td>
             </tr>
           }
         </tbody>

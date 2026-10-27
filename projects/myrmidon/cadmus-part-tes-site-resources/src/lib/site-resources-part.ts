@@ -2,6 +2,7 @@ import { Part } from '@myrmidon/cadmus-core';
 import { AssertedHistoricalDate } from '@myrmidon/cadmus-refs-historical-date';
 import { AssertedLocation } from '@myrmidon/cadmus-part-geo-asserted-locations';
 import { DecoratedCount } from '@myrmidon/cadmus-refs-decorated-counts';
+import { DocReference } from '@myrmidon/cadmus-refs-doc-references';
 
 /**
  * A resource related to a site, such as a quarry, a mine, a water source, etc.
@@ -12,8 +13,10 @@ export interface SiteResource {
   tag?: string;
   features?: string[];
   location?: AssertedLocation;
-  date?: AssertedHistoricalDate;
+  dates?: AssertedHistoricalDate[];
   counts?: DecoratedCount[];
+  references?: DocReference[];
+  note?: string;
 }
 
 /**
@@ -135,60 +138,63 @@ export const SITE_RESOURCES_PART_SCHEMA = {
               },
             },
           },
-          date: {
-            type: 'object',
-            required: ['a'],
-            properties: {
-              tag: { type: 'string' },
-              assertion: {
-                type: 'object',
-                required: ['rank'],
-                properties: {
-                  tag: { type: 'string' },
-                  rank: { type: 'integer' },
-                  note: { type: 'string' },
-                  references: {
-                    type: 'array',
-                    items: {
-                      type: 'object',
-                      required: ['citation'],
-                      properties: {
-                        type: { type: 'string' },
-                        tag: { type: 'string' },
-                        citation: { type: 'string' },
-                        note: { type: 'string' },
+          dates: {
+            type: 'array',
+            items: {
+              type: 'object',
+              required: ['a'],
+              properties: {
+                tag: { type: 'string' },
+                assertion: {
+                  type: 'object',
+                  required: ['rank'],
+                  properties: {
+                    tag: { type: 'string' },
+                    rank: { type: 'integer' },
+                    note: { type: 'string' },
+                    references: {
+                      type: 'array',
+                      items: {
+                        type: 'object',
+                        required: ['citation'],
+                        properties: {
+                          type: { type: 'string' },
+                          tag: { type: 'string' },
+                          citation: { type: 'string' },
+                          note: { type: 'string' },
+                        },
                       },
                     },
                   },
                 },
-              },
-              a: {
-                type: 'object',
-                required: ['value'],
-                properties: {
-                  value: { type: 'integer' },
-                  isCentury: { type: 'boolean' },
-                  isSpan: { type: 'boolean' },
-                  isApproximate: { type: 'boolean' },
-                  isDubious: { type: 'boolean' },
-                  day: { type: 'integer' },
-                  month: { type: 'integer' },
-                  hint: { type: 'string' },
-                  slide: { type: 'integer' },
+                a: {
+                  type: 'object',
+                  required: ['value'],
+                  properties: {
+                    value: { type: 'integer' },
+                    isCentury: { type: 'boolean' },
+                    isSpan: { type: 'boolean' },
+                    isApproximate: { type: 'boolean' },
+                    isDubious: { type: 'boolean' },
+                    day: { type: 'integer' },
+                    month: { type: 'integer' },
+                    hint: { type: 'string' },
+                    slide: { type: 'integer' },
+                  },
                 },
-              },
-              b: {
-                type: 'object',
-                properties: {
-                  value: { type: 'integer' },
-                  isCentury: { type: 'boolean' },
-                  isSpan: { type: 'boolean' },
-                  isApproximate: { type: 'boolean' },
-                  isDubious: { type: 'boolean' },
-                  day: { type: 'integer' },
-                  month: { type: 'integer' },
-                  hint: { type: 'string' },
-                  slide: { type: 'integer' },
+                b: {
+                  type: 'object',
+                  properties: {
+                    value: { type: 'integer' },
+                    isCentury: { type: 'boolean' },
+                    isSpan: { type: 'boolean' },
+                    isApproximate: { type: 'boolean' },
+                    isDubious: { type: 'boolean' },
+                    day: { type: 'integer' },
+                    month: { type: 'integer' },
+                    hint: { type: 'string' },
+                    slide: { type: 'integer' },
+                  },
                 },
               },
             },
@@ -206,6 +212,20 @@ export const SITE_RESOURCES_PART_SCHEMA = {
               },
             },
           },
+          references: {
+            type: 'array',
+            items: {
+              type: 'object',
+              required: ['citation'],
+              properties: {
+                type: { type: 'string' },
+                tag: { type: 'string' },
+                citation: { type: 'string' },
+                note: { type: 'string' },
+              },
+            },
+          },
+          note: { type: 'string' },
         },
       },
     },

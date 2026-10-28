@@ -24,12 +24,12 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { copyFormValue, isImplicitSubmission, setFieldFromChild } from '@myrmidon/cadmus-ui';
 import { DecoratedCount, DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
 import { AssertedHistoricalDate } from '@myrmidon/cadmus-refs-historical-date';
-import { DocReference, DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
+import { DocReference } from '@myrmidon/cadmus-refs-doc-references';
 import {
   AssertedLocation,
   AssertedLocationComponent,
 } from '@myrmidon/cadmus-part-geo-asserted-locations';
-import { LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
+import { LookupDocReferencesComponent, LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
 import { ThesaurusEntriesPickerComponent } from '@myrmidon/cadmus-thesaurus-store';
 
 import { SiteResource } from '../../site-resources-part';
@@ -105,7 +105,7 @@ function toModel(draft: SiteResourceControls): SiteResource {
     AssertedLocationComponent,
     AssertedHistoricalDatesEditor,
     DecoratedCountsComponent,
-    DocReferencesComponent,
+    LookupDocReferencesComponent,
   ],
   templateUrl: './site-resource-editor.html',
   styleUrl: './site-resource-editor.css',

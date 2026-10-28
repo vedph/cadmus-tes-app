@@ -122,10 +122,11 @@
   <div>
     <fieldset>
       <legend>references</legend>
-      <cadmus-refs-doc-references
+      <cadmus-refs-lookup-doc-references
         [references]="form.references().value()"
         [typeEntries]="refTypeEntries()"
         [tagEntries]="refTagEntries()"
+        [defaultPicker]="'lookup'"
         (referencesChange)="onReferencesChange($event)"
       />
     </fieldset>

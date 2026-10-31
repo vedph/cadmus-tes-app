@@ -7,6 +7,8 @@
   window.__env.version = "0.0.4";
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
+  // Pleiades API
+  window.__env.pleiadesUrl = "http://localhost:5000/api/";
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";
   window.__env.zoteroUserId = "TODO:YOUR_ZOTERO_USER_ID";

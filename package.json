@@ -25,7 +25,7 @@
     ]
   },
   "private": true,
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.16.1",
   "dependencies": {
     "@angular/cdk": "~22.2.4",
     "@angular/common": "^22.2.3",
@@ -37,7 +37,7 @@
     "@angular/router": "^22.2.3",
     "@auth0/angular-jwt": "^5.2.0",
     "@jean-merelis/ngx-monaco-editor": "^21.0.0",
-    "@maplibre/ngx-maplibre-gl": "^22.3.0",
+    "@maplibre/ngx-maplibre-gl": "^22.3.1",
     "@myrmidon/auth-jwt-admin": "^10.0.1",
     "@myrmidon/auth-jwt-login": "^10.0.1",
     "@myrmidon/cadmus-api": "^20.0.0",
@@ -81,7 +81,8 @@
     "@myrmidon/cadmus-refs-doc-references": "^11.0.3",
     "@myrmidon/cadmus-refs-external-ids": "^11.0.3",
     "@myrmidon/cadmus-refs-historical-date": "^10.0.4",
-    "@myrmidon/cadmus-refs-lookup": "^11.0.9",
+    "@myrmidon/cadmus-refs-lookup": "^11.0.10",
+    "@myrmidon/cadmus-refs-pleiades-lookup": "^0.0.1",
     "@myrmidon/cadmus-refs-proper-name": "^11.0.4",
     "@myrmidon/cadmus-refs-zotero-lookup": "^1.0.3",
     "@myrmidon/cadmus-state": "^20.0.0",
@@ -103,8 +104,8 @@
     "@terraformer/wkt": "^2.2.2",
     "@types/geojson": "^7946.0.16",
     "echarts": "^6.1.0",
-    "maplibre-gl": "^6.15.0",
-    "marked": "^18.1.1",
+    "maplibre-gl": "^6.16.0",
+    "marked": "^18.1.2",
     "monaco-editor": "^0.55.1",
     "ngx-echarts": "^22.0.0",
     "ngx-markdown": "^22.1.1",
@@ -128,7 +129,7 @@
     "zone.js": "0.16.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.65.0"
+    "@rollup/rollup-win32-arm64-msvc": "^4.67.2"
   },
   "pnpm": {
     "overrides": {

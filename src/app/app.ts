@@ -1,4 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 
@@ -14,6 +22,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
 import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
+import {
+  PLEIADES_LOOKUP_OPTIONS_DIALOG_CONFIG,
+  PleiadesLookupOptionsComponent,
+  PleiadesRefLookupService,
+  PleiadesSearchResult,
+} from '@myrmidon/cadmus-refs-pleiades-lookup';
 
 // cadmus
 import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
@@ -32,7 +46,7 @@ import { AppRepository } from '@myrmidon/cadmus-state';
     MatToolbarModule,
     MatTooltipModule,
     GravatarPipe,
-    ThemeToggleComponent
+    ThemeToggleComponent,
   ],
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -60,6 +74,18 @@ export class App implements OnInit, OnDestroy {
 
     // configure external lookup for asserted composite IDs
     storage.store(LOOKUP_CONFIGS_KEY, [
+      // Pleiades
+      {
+        name: 'Pleiades',
+        iconUrl: '/img/pleiades128.png',
+        description: 'Pleiades gazetteer of ancient places',
+        label: 'ID',
+        service: inject(PleiadesRefLookupService),
+        itemIdGetter: (item: PleiadesSearchResult) => item?.id,
+        itemLabelGetter: (item: PleiadesSearchResult) => item?.name,
+        optDialog: PleiadesLookupOptionsComponent,
+        optDialogConfig: PLEIADES_LOOKUP_OPTIONS_DIALOG_CONFIG,
+      },
       // Zotero
       {
         name: 'Zotero',

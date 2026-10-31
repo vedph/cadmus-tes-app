@@ -25,6 +25,39 @@ services:
     networks:
       - cadmus-tes-network
 
+  # Postgis
+  pleiades-pgsql:
+    image: postgis/postgis
+    container_name: pleiades-pgsql
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      # pick any port on the host side, here 5434
+      - 127.0.0.1:5434:5432
+    #volumes:
+    #  - pleiades-vol:/var/lib/postgresql
+
+  # Pleiades API
+  pleiades-api:
+    image: vedph2020/pleiades-api:3.0.2
+    container_name: pleiades-api
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:29139:8080
+    depends_on:
+      - pleiades-pgsql
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - CONNECTIONSTRINGS__DEFAULT=Server=pleiades-pgsql;User ID=postgres;Password=postgres;Port=5434;Database=pleiades;
+      # the seconds delay before database seed starts
+      - SEEDDELAY=30
+    #volumes:
+      # 👉 place dump files in host dump folder here
+      #- ./dump:/var/pleiades
+
   # Cadmus TES API
   cadmus-tes-api:
     image: vedph2020/cadmus-tes-api:0.0.4
@@ -34,6 +67,7 @@ services:
     depends_on:
       - cadmus-tes-mongo
       - cadmus-tes-pgsql
+      - pleiades-api
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - CONNECTIONSTRINGS__DEFAULT=mongodb://cadmus-tes-mongo:27017/{0}
@@ -63,3 +97,6 @@ services:
 networks:
   cadmus-tes-network:
     driver: bridge
+
+#volumes:
+#  pleiades-vol:

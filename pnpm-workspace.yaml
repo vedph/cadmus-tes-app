@@ -26,3 +26,4 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-geo-asserted-toponyms@11.1.4'
   - '@myrmidon/cadmus-part-geo-pg@11.0.4'
   - maplibre-gl@6.11.2
+  - '@myrmidon/cadmus-refs-pleiades-lookup@0.0.3'

@@ -1,6 +1,6 @@
 {
   "name": "cadmus-tes-app",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "start": "node scripts/check-local-libs.js && ng serve",

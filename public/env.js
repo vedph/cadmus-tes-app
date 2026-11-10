@@ -4,7 +4,7 @@
 
   // environment-dependent settings
   window.__env.apiUrl = "http://localhost:5101/api/";
-  window.__env.version = "0.0.4";
+  window.__env.version = "0.0.5";
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
   // Pleiades API

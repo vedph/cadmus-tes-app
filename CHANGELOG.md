@@ -1,5 +1,8 @@
 # History
 
+## 0.0.5
+
+- 2026-11-10: updated Angular and packages.
 - 2026-10-27: ⚠️ changes to `SiteResource` schema and editor.
 - 2026-10-24:
   - updated Angular and packages.

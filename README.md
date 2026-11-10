@@ -9,9 +9,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 🐋 Quick Docker image build:
 
-1. `pnpm run build-lib`.
+1. `pnpm run build:libs`.
 2. update version in `env.js` and `ng build --configuration production`.
-3. `docker build . -t vedph2020/cadmus-tes-app:0.0.4 -t vedph2020/cadmus-tes-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-tes-app:0.0.5 -t vedph2020/cadmus-tes-app:latest` (replace with the current version).
 
 ⚠️ Note: to enable Zotero lookup, you must add an `env.local.js` file next to the `env.js` file with a content like this:
 

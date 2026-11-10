@@ -7,8 +7,11 @@
   window.__env.version = "0.0.5";
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
+  // Taxo
+  window.__env.taxoUrl = "http://localhost:5101/api/";
   // Pleiades API
   window.__env.pleiadesUrl = "http://localhost:5000/api/";
+
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";
   window.__env.zoteroUserId = "TODO:YOUR_ZOTERO_USER_ID";

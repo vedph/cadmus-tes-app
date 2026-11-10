@@ -51,7 +51,7 @@ services:
       - pleiades-pgsql
     environment:
       - ASPNETCORE_URLS=http://+:8080
-      - CONNECTIONSTRINGS__DEFAULT=Server=pleiades-pgsql;User ID=postgres;Password=postgres;Port=5434;Database=pleiades;
+      - CONNECTIONSTRINGS__DEFAULT=Server=pleiades-pgsql;User ID=postgres;Password=postgres;Port=5432;Database=pleiades;
       # the seconds delay before database seed starts
       - SEEDDELAY=30
     #volumes:
@@ -60,7 +60,7 @@ services:
 
   # Cadmus TES API
   cadmus-tes-api:
-    image: vedph2020/cadmus-tes-api:0.0.4
+    image: vedph2020/cadmus-tes-api:0.0.6
     container_name: cadmus-tes-api
     ports:
       - 5101:8080
@@ -74,6 +74,7 @@ services:
       - CONNECTIONSTRINGS__AUTH=Server=cadmus-tes-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
       - CONNECTIONSTRINGS__INDEX=Server=cadmus-tes-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
       - CONNECTIONSTRINGS__MOL=Server=cadmus-tes-pgsql;port=5432;Database=mol;User Id=postgres;Password=postgres;Include Error Detail=True
+      - CONNECTIONSTRINGS__TAXOSTORE=Server=cadmus-tes-pgsql;port=5432;Database=taxo-tes;User Id=postgres;Password=postgres;Include Error Detail=True
       - SERILOG__CONNECTIONSTRING=mongodb://cadmus-tes-mongo:27017/{0}-log
       - STOCKUSERS__0__PASSWORD=P4ss-W0rd!
       - SEED__DELAY=20
@@ -85,7 +86,7 @@ services:
 
   # Cadmus TES App
   cadmus-tes-app:
-    image: vedph2020/cadmus-tes-app:0.0.4
+    image: vedph2020/cadmus-tes-app:0.0.5
     container_name: cadmus-tes-app
     ports:
       - 4200:80

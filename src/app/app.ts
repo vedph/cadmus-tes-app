@@ -28,6 +28,10 @@ import {
   PleiadesRefLookupService,
   PleiadesSearchResult,
 } from '@myrmidon/cadmus-refs-pleiades-lookup';
+import {
+  LOOKUP_TAXOSTORE_CONFIGS_KEY,
+  TaxoStoreLookupConfig,
+} from '@myrmidon/cadmus-refs-asserted-ids';
 
 // cadmus
 import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
@@ -124,6 +128,35 @@ export class App implements OnInit, OnDestroy {
         },
       },
     ] as RefLookupConfig[]);
+
+    // configure TaxoStore
+    this.configureTaxoLookup(storage);
+  }
+
+  private configureTaxoLookup(storage: RamStorageService): void {
+    storage.store(LOOKUP_TAXOSTORE_CONFIGS_KEY, [
+      {
+        treeId: 'descriptors',
+        treeName: 'descriptors',
+        canEdit: true,
+        canAdd: true,
+        canDelete: false,
+      },
+      {
+        treeId: 'subjects',
+        treeName: 'subjects',
+        canEdit: true,
+        canAdd: true,
+        canDelete: false,
+      },
+      {
+        treeId: 'gods',
+        treeName: 'gods',
+        canEdit: true,
+        canAdd: true,
+        canDelete: false,
+      }
+    ] as TaxoStoreLookupConfig[]);
   }
 
   public ngOnInit(): void {
